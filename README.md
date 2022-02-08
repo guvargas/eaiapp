@@ -1,5 +1,5 @@
 # eaiapp
 Mensageiro utilizando sockets e threads
 
-#Equipe
+# Equipe
 Gustavo Vargas de Andrade e Lucas Waterkemper Alberton
