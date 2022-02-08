@@ -29,31 +29,17 @@ public class ConexaoCliente {
             System.out.println("Conectado!");
             in = conn.getInputStream();
             out = conn.getOutputStream();
-            String comando;
-           // ClienteView v= new ClienteView();
-            System.out.println(LerResposta());
-            /*        
-            do {
-                comando = v.Escolher();  
-                // enviar o comando para o servidor
-               
-               
-                out.write(comando.getBytes());
-                //ler resposta
-                if(comando.equals("sair")){
-                    break;
-                }
-                System.out.println(LerResposta());          
+            do{
 
-                
-            } while (!comando.equals("sair"));
-            */
+                System.out.println(LerResposta());
+            }while(true);
+ 
         } catch (UnknownHostException e) {
             e.printStackTrace();
             
             return false;
         } 
-        return true;
+      //  return true;
     }
 /*
     public String enviarComando(String s) throws IOException {
