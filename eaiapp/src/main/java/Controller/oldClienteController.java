@@ -2,12 +2,12 @@ package Controller;
 
 import java.io.IOException;
 
-import Helper.ConexaoCliente;
+import Helper.oldConexaoCliente;
 import Helper.Global;
 
-public class ClienteController {
+public class oldClienteController {
    public static void main(String[] args) throws IOException {
-       ConexaoCliente conexaoCliente = new ConexaoCliente();
+       oldConexaoCliente conexaoCliente = new oldConexaoCliente();
        conexaoCliente.Conectar(Global.IP_CONEXAO, 8080);
 
    } 

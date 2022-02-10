@@ -3,10 +3,10 @@ package Helper;
 import java.io.IOException;
 import java.net.*;
 
-import Model.MensageiroThread;
+import Model.oldMensageiroThread;
 
 
-public class ConexaoServidor {
+public class oldConexaoServidor {
     public static void main(String[] args) throws IOException {
         ServerSocket server = new ServerSocket(8080);
         server.setReuseAddress(true);
@@ -15,7 +15,7 @@ public class ConexaoServidor {
             System.out.println("Aguardando conexao...");
             Socket conn = server.accept();
 
-            MensageiroThread mensageiro = new MensageiroThread(conn);
+            oldMensageiroThread mensageiro = new oldMensageiroThread(conn);
             mensageiro.start();
             i++;
         }
