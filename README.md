@@ -5,10 +5,10 @@ O sistema tem a premissa de ser uma aplicação simples para a comunicação ent
 Gustavo Vargas de Andrade e Lucas Waterkemper Alberton.
 
 # Requisitos Funcionais
-- RF1 O sistema deverá permitir manter Pessoas
-- RF2 O sistema deverá permitir manter Conversas
-- RF3 O sistema deverá permitir que uma pessoa tenha conversas com mais de 1 pessoa
-- RF4 O sistema deverá ter um sistema de cadastro e login
+- RF1. O sistema deverá permitir manter Pessoas
+- RF2. O sistema deverá permitir manter Conversas
+- RF3. O sistema deverá permitir que uma pessoa tenha conversas com mais de 1 pessoa
+- RF4. O sistema deverá ter um sistema de cadastro e login
 
 # Requisitos Não Funcionais
 - RNF1. Deve ser distribuído e executado simultaneamente em no mínimo 3 clientes (hosts) diferentes.
@@ -16,12 +16,12 @@ Gustavo Vargas de Andrade e Lucas Waterkemper Alberton.
 - RNF3. A comunicação será realizada através de sockets
 - RNF4. Os dados enviados entre cliente/servidor estarão no formato String utilizando separadores de ponto e vírgula (“;”) entre as mensagens
 - RNF5. A aplicação cliente deve ter interface gráfica
-- RNF6 O sistema deve utilizar Threads
+- RNF6. O sistema deve utilizar Threads
 
 # Regras de Negócio
-- RN1 O sistema não deve permitir a exclusão de mensagens
-- RN2 Uma pessoa não poderá mudar suas informações de cadastro
-- RN3 O login deve ser único
+- RN1. O sistema não deve permitir a exclusão de mensagens
+- RN2. Uma pessoa não poderá mudar suas informações de cadastro
+- RN3. O login deve ser único
 
 # Mensagens trocadas 
 
