@@ -1,0 +1,86 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>430</x><y>584</y><w>210</w><h>100</h></coordinates><panel_attributes>Conversa
+--
+-nome:String
+-criador:String
+--
++Conversa()
++gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>584</y><w>210</w><h>140</h></coordinates><panel_attributes>Mensagem
+--
+-conteudo:String
+-horario: String
+-falante: String
+-ouvinte: String
+--
++Mensagem()
++gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>633</x><y>560</y><w>190</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..n
+contém &gt;</panel_attributes><additional_attributes>10;24;170;24</additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>390</y><w>210</w><h>120</h></coordinates><panel_attributes>Pessoa
+--
+-ip: String
+-login: String
+-senha: String
+--
++Pessoa()
++gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>280</y><w>210</w><h>120</h></coordinates><panel_attributes>ThreadServidor
+--
+-ip: String
+-porta:int
+--
+-ThreadServidor(ip:String,porta:int)
+-iniciar():boolean
+-desligar():boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>500</y><w>80</w><h>100</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..n
+contém &gt;</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>390</y><w>80</w><h>210</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..n
+recebe &gt;</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>160</y><w>190</w><h>240</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..n
+comunica &gt;</panel_attributes><additional_attributes>10;10;60;10;60;210;170;210</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>670</y><w>750</w><h>100</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..1
+são guardadas &gt;</panel_attributes><additional_attributes>10;10;10;80;710;80;710;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1140</x><y>590</y><w>210</w><h>90</h></coordinates><panel_attributes>Banco
+--
+-criacao: String
+--
++Banco()
++gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>350</y><w>300</w><h>260</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..1
+comunica &gt;</panel_attributes><additional_attributes>10;20;260;20;260;240</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1050</x><y>50</y><w>330</w><h>80</h></coordinates><panel_attributes>ControllerAutenticacao
+--
+-
+--
++ControllerAutenticacao()
++Autenticar(login: String, senha: String): Boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1280</x><y>120</y><w>100</w><h>490</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..1
+comunica &gt;</panel_attributes><additional_attributes>10;10;10;470</additional_attributes></element><element><id>Relation</id><coordinates><x>870</x><y>120</y><w>360</w><h>180</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..1
+valida &gt;</panel_attributes><additional_attributes>320;10;320;110;10;110;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>440</y><w>960</w><h>340</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=0..1
+são guardadas &gt;</panel_attributes><additional_attributes>80;10;10;10;10;320;920;320;920;240</additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>0</y><w>330</w><h>70</h></coordinates><panel_attributes>FabricaConexão
+--
+--
++gerarThreadCliente(ip:String,porta:int):void
++gerarThreadServidor(ip:String,porta:int):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>110</y><w>210</w><h>120</h></coordinates><panel_attributes>ThreadCliente
+--
+-ip: String
+-porta:int
+--
+-ThreadCliente(ip:String,porta:int)
+-iniciar():boolean
+-desligar():boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>60</y><w>140</w><h>240</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..n
+gera &gt;</panel_attributes><additional_attributes>10;10;10;80;100;80;100;220</additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>60</y><w>120</w><h>100</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..n
+gera &gt;</panel_attributes><additional_attributes>60;10;60;70;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>30</y><w>220</w><h>380</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=0..n
+usa &gt;</panel_attributes><additional_attributes>200;10;10;10;10;250;170;250;170;360</additional_attributes></element></diagram>
