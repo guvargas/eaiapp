@@ -13,7 +13,7 @@ public class ServerController extends Thread {
     private int porta = 8080;
     private ServerFactory fabricaServidores = null;
     public boolean on = false;
-   //private HashMap<String, ServerConnectionThread> servidores = new HashMap<String, ServerConnectionThread>();
+   private HashMap<Long, ServerConnectionThread> servidores = new HashMap<Long, ServerConnectionThread>();
 
     public ServerController(int porta) {
         this.porta = porta;
@@ -30,7 +30,10 @@ public class ServerController extends Thread {
             do {
                 System.out.println("Aguardando conexao...");
                 Socket conn = server.accept();
-                fabricaServidores.criarConexao(conn).start();;
+                ServerConnectionThread servidor = fabricaServidores.criarConexao(conn);
+                servidor.getId();
+                servidor.start();
+                servidores.put(servidor.getId(), servidor);
             } while (on);
 
             server.close();

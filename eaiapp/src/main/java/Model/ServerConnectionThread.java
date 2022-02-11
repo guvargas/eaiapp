@@ -9,19 +9,6 @@ import java.net.Socket;
 
 public class ServerConnectionThread extends Thread {
 
-    private Socket conexao = null;
-    public Boolean on= false;
-
-    // leitor e escritor
-    private InputStreamReader leitor = null;
-    private OutputStreamWriter escritor = null;
-
-    // leitor pra ser mais rapido
-    private BufferedReader bufferLeitor = null;
-
-    // leitor pra ser mais rapido
-    private BufferedWriter bufferEscritor = null;
-
     public ServerConnectionThread(Socket conn) {
         this.conexao = conn;
     }
@@ -38,6 +25,11 @@ public class ServerConnectionThread extends Thread {
             // escritor pega o que vai
             escritor = new OutputStreamWriter(conexao.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
+
+
+            bufferEscritor.write("conectado;"+this.getId());
+            bufferEscritor.newLine();
+            bufferEscritor.flush();
 
             while (on) {
                 String msgFromClient = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
@@ -86,4 +78,20 @@ public class ServerConnectionThread extends Thread {
             e.printStackTrace();
         }
     }
+
+ 
+    private Socket conexao = null;
+    public Boolean on= false;
+
+    // leitor e escritor
+    private InputStreamReader leitor = null;
+    private OutputStreamWriter escritor = null;
+
+    // leitor pra ser mais rapido
+    private BufferedReader bufferLeitor = null;
+
+    // leitor pra ser mais rapido
+    private BufferedWriter bufferEscritor = null;
+
+
 }

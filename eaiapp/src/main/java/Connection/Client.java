@@ -11,14 +11,14 @@ import java.util.Scanner;
 import Helper.Global;
 
 public class Client extends Thread {
-    Socket socket = null;
-    InputStreamReader leitor = null;
-    OutputStreamWriter escritor = null;
-    Scanner scanner = null;
+    private Socket socket = null;
+    private InputStreamReader leitor = null;
+    private OutputStreamWriter escritor = null;
+    private Scanner scanner = null;
     // leitor pra ser mais rapido
-    BufferedReader bufferLeitor = null;
+    private  BufferedReader bufferLeitor = null;
     // leitor pra ser mais rapido
-    BufferedWriter bufferEscritor = null;
+    private BufferedWriter bufferEscritor = null;
 
     @Override
     public void run() {
@@ -35,6 +35,8 @@ public class Client extends Thread {
             bufferEscritor = new BufferedWriter(escritor);
 
             scanner = new Scanner(System.in);
+           
+            System.out.println("Server: " + new String(bufferLeitor.readLine().getBytes()));
 
             while (true) {
 
@@ -45,7 +47,7 @@ public class Client extends Thread {
                 bufferEscritor.flush();
 
                 // esperando resposta do servidor
-                String respostaServer = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
+               String respostaServer = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
                 System.out.println("Server: " + respostaServer);
 
                 if (msgToSend.equals("thau")) {
