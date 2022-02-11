@@ -1,4 +1,4 @@
-package Connection;
+package Thread;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,15 +8,16 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import Data.BancoClient;
 import Helper.Global;
 
-public class Client extends Thread {
+public class ClientThread extends Thread {
     private Socket socket = null;
     private InputStreamReader leitor = null;
     private OutputStreamWriter escritor = null;
     private Scanner scanner = null;
     // leitor pra ser mais rapido
-    private  BufferedReader bufferLeitor = null;
+    private BufferedReader bufferLeitor = null;
     // leitor pra ser mais rapido
     private BufferedWriter bufferEscritor = null;
 
@@ -35,24 +36,28 @@ public class Client extends Thread {
             bufferEscritor = new BufferedWriter(escritor);
 
             scanner = new Scanner(System.in);
-           
+
             System.out.println("Server: " + new String(bufferLeitor.readLine().getBytes()));
 
             while (true) {
 
-                String msgToSend = scanner.nextLine();
-                bufferEscritor.write(msgToSend);
-                bufferEscritor.newLine();
-                // pra eficiencia
-                bufferEscritor.flush();
+                if (!BancoClient.filaMensagens.isEmpty()) {
+                    // String msgToSend = scanner.nextLine();
+                    String msgToSend = BancoClient.filaMensagens.get(0);
+                    bufferEscritor.write(msgToSend);
+                    bufferEscritor.newLine();
+                    // pra eficiencia
+                    bufferEscritor.flush();
 
-                // esperando resposta do servidor
-               String respostaServer = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
-                System.out.println("Server: " + respostaServer);
-
-                if (msgToSend.equals("thau")) {
-                    break;
+                    // esperando resposta do servidor
+                    String respostaServer = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
+                    System.out.println("Server: " + respostaServer);
                 }
+                /*
+                 * if (msgToSend.equals("thau")) {
+                 * break;
+                 * }
+                 */
 
             }
         } catch (IOException e) {

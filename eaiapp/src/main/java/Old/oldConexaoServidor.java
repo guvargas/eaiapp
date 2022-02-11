@@ -1,9 +1,7 @@
-package Helper;
+package Old;
 
 import java.io.IOException;
 import java.net.*;
-
-import Model.oldMensageiroThread;
 
 
 public class oldConexaoServidor {

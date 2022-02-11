@@ -2,7 +2,7 @@ package Helper;
 
 import java.net.Socket;
 
-import Model.ServerConnectionThread;
+import Thread.ServerConnectionThread;
 
 public class ServerFactory {
     public ServerConnectionThread criarConexao(Socket conectado) {

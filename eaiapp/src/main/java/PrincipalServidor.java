@@ -1,10 +1,12 @@
-import Controller.ServerController;
-import Helper.Global;
+import Data.Banco;
 
 public class PrincipalServidor {
-    public static void main(String[] args) {
-        //clicou em servidor
-        ServerController serverController = new ServerController(Global.PORTA_CONEXAO);
-        serverController.run();
+private Banco b =null;
+
+    public void iniciarAplicacaoServidor(){
+        //abre banco
+        b= new Banco();
+
+        //abre tela de config do server
     }
 }

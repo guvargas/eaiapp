@@ -1,21 +1,20 @@
-package Controller;
+package Thread;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-import Connection.Server;
 import Helper.ServerFactory;
-import Model.ServerConnectionThread;
+import Old.oldServer;
 
-public class ServerController extends Thread {
+public class ServerMainThread extends Thread {
     private int porta = 8080;
     private ServerFactory fabricaServidores = null;
     public boolean on = false;
-   private HashMap<Long, ServerConnectionThread> servidores = new HashMap<Long, ServerConnectionThread>();
+   private HashMap<String, ServerConnectionThread> servidores = new HashMap<String, ServerConnectionThread>();
 
-    public ServerController(int porta) {
+    public ServerMainThread(int porta) {
         this.porta = porta;
         fabricaServidores = new ServerFactory();
     }
@@ -31,9 +30,8 @@ public class ServerController extends Thread {
                 System.out.println("Aguardando conexao...");
                 Socket conn = server.accept();
                 ServerConnectionThread servidor = fabricaServidores.criarConexao(conn);
-                servidor.getId();
                 servidor.start();
-                servidores.put(servidor.getId(), servidor);
+                servidores.put(conn.getInetAddress().getHostAddress(), servidor);
             } while (on);
 
             server.close();

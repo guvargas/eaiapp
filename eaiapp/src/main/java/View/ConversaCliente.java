@@ -111,6 +111,7 @@ public class ConversaCliente extends javax.swing.JFrame {
     private void btEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnviarMensagemActionPerformed
     String mensagem = "";
     mensagem = tfMensagem.getText();
+    controller.enviarMensagem(mensagem);
     atualizarDisplay(controller.enviarMensagem(mensagem));
     tfMensagem.setText("");
 

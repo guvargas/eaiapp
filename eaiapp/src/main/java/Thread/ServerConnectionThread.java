@@ -1,4 +1,4 @@
-package Model;
+package Thread;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

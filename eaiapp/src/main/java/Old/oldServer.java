@@ -1,4 +1,4 @@
-package Connection;
+package Old;
 
 import java.io.*;
 import java.net.Inet4Address;
@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 import Helper.Global;
 
-public class Server {
+public class oldServer {
     public static void main(String[] args) throws IOException {
         Socket socket = null;
         InputStreamReader leitor = null;

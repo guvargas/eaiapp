@@ -1,8 +1,7 @@
-package Controller;
+package Old;
 
 import java.io.IOException;
 
-import Helper.oldConexaoCliente;
 import Helper.Global;
 
 public class oldClienteController {
