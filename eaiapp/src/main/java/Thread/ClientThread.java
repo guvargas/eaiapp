@@ -29,38 +29,47 @@ public class ClientThread extends Thread {
             socket = new Socket(Global.IP_CONEXAO, Global.PORTA_CONEXAO);
 
             // leitor pega do que vem
+
+            /*
             leitor = new InputStreamReader(socket.getInputStream());// , Global.ENCODER_STRING);
-            bufferLeitor = new BufferedReader(leitor);
+            bufferLeitor = new BufferedReader(leitor);*/
+
+            OuvinteThread ouvinte = new OuvinteThread(socket);
+            ouvinte.start();
             // escritor pega o que vai
             escritor = new OutputStreamWriter(socket.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
 
             scanner = new Scanner(System.in);
 
-            System.out.println("Server: " + new String(bufferLeitor.readLine().getBytes()));
+           // System.out.println("Server: " + new String(bufferLeitor.readLine().getBytes()));
 
-            while (true) {
+            do {
 
                 if (!BancoClient.filaMensagens.isEmpty()) {
                     // String msgToSend = scanner.nextLine();
                     String msgToSend = BancoClient.filaMensagens.get(0);
+                    BancoClient.filaMensagens.remove(0);
                     bufferEscritor.write(msgToSend);
                     bufferEscritor.newLine();
                     // pra eficiencia
                     bufferEscritor.flush();
-
                     // esperando resposta do servidor
-                    String respostaServer = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
-                    System.out.println("Server: " + respostaServer);
+                 /*   String respostaServer = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
+                    System.out.println("Server: " + respostaServer);*/
+
+                } else {
+                    sleep(500);
                 }
+
                 /*
                  * if (msgToSend.equals("thau")) {
                  * break;
                  * }
                  */
 
-            }
-        } catch (IOException e) {
+            } while (true);
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         } finally {
             fecharConexoes();

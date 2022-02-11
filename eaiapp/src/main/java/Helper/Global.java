@@ -2,7 +2,7 @@ package Helper;
 
 public class Global {
     public static final boolean STATUS_SERVIDOR = true;
-    public static final String IP_CONEXAO = "192.168.18.195";
+    public static final String IP_CONEXAO = "192.168.18.187";
     public static final int PORTA_CONEXAO = 8080;
     public static final String ENCODER_STRING = "ISO-8859-1";
     //ip pc vargas = "192.168.18.195";
