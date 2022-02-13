@@ -16,11 +16,11 @@ public class Pessoa {
         conversas = new ArrayList<Conversa>();
     }
 
-    public Pessoa(String ip, String login, String senha,int porta) {
+    public Pessoa(String ip, String Login,int porta) {
         this.ip = ip;
         this.porta= porta;
-        this.login = login;
-        this.senha = senha;
+        this.login = Login;
+      //  this.senha = senha;
         conversas = new ArrayList<Conversa>();
     }
     public void setPorta(int porta) {

@@ -2,10 +2,10 @@ package Helper;
 
 import java.net.Socket;
 
-import Thread.ServerConnectionThread;
+import Thread.HostCommunicationThread;
 
 public class ServerFactory {
-    public ServerConnectionThread criarConexao(Socket conectado) {
-        return new ServerConnectionThread(conectado);
+    public HostCommunicationThread criarConexao(Socket conectado) {
+        return new HostCommunicationThread(conectado);
     }
 }

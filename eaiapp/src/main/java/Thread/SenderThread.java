@@ -11,43 +11,46 @@ import java.util.Scanner;
 import Data.BancoMensagens;
 import Helper.Global;
 
-public class ClientThread extends Thread {
-    private Socket socket = null;
-    private InputStreamReader leitor = null;
-    private OutputStreamWriter escritor = null;
-    private Scanner scanner = null;
-    // leitor pra ser mais rapido
-    private BufferedReader bufferLeitor = null;
-    // leitor pra ser mais rapido
-    private BufferedWriter bufferEscritor = null;
+public class SenderThread extends Thread {
+
+
+    public SenderThread() {
+
+    }
+
+    public SenderThread(String ip, int porta) {
+        this.ip = ip;
+        this.porta = porta;
+    }
 
     @Override
     public void run() {
 
         try {
             // abro o socket
-            socket = new Socket(Global.IP_CONEXAO, Global.PORTA_CONEXAO);
+            socket = new Socket(ip, porta);
 
             // leitor pega do que vem
 
-            /*
             leitor = new InputStreamReader(socket.getInputStream());// , Global.ENCODER_STRING);
-            bufferLeitor = new BufferedReader(leitor);*/
+            bufferLeitor = new BufferedReader(leitor);
+            /*
+             * OuvinteThread ouvinte = new OuvinteThread(socket);
+             * ouvinte.start();
+             */
 
-            OuvinteThread ouvinte = new OuvinteThread(socket);
-            ouvinte.start();
             // escritor pega o que vai
             escritor = new OutputStreamWriter(socket.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
 
-            scanner = new Scanner(System.in);
+          
 
-           // System.out.println("Server: " + new String(bufferLeitor.readLine().getBytes()));
+            // System.out.println("Server: " + new
+            // String(bufferLeitor.readLine().getBytes()));
 
-            do {
+          //  do {
 
-                if (!BancoMensagens.filaMensagens.isEmpty()) {
-                    // String msgToSend = scanner.nextLine();
+            //    if (!BancoMensagens.filaMensagens.isEmpty()) {
                     String msgToSend = BancoMensagens.filaMensagens.get(0);
                     BancoMensagens.filaMensagens.remove(0);
                     bufferEscritor.write(msgToSend);
@@ -55,21 +58,18 @@ public class ClientThread extends Thread {
                     // pra eficiencia
                     bufferEscritor.flush();
                     // esperando resposta do servidor
-                 /*   String respostaServer = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
-                    System.out.println("Server: " + respostaServer);*/
+                    
+                     String respostaServer = new String(bufferLeitor.readLine().getBytes());//
+                     System.out.println("Server: " + respostaServer);
+                     
 
-                } else {
-                    sleep(500);
-                }
+             //   } else {
+              //      sleep(500);
+              //  }
 
-                /*
-                 * if (msgToSend.equals("thau")) {
-                 * break;
-                 * }
-                 */
-
-            } while (true);
-        } catch (IOException | InterruptedException e) {
+          //  } while (true);
+          fecharConexoes();
+        } catch (IOException e ) {
             e.printStackTrace();
         } finally {
             fecharConexoes();
@@ -101,4 +101,15 @@ public class ClientThread extends Thread {
             e.printStackTrace();
         }
     }
+    private Socket socket = null;
+    private InputStreamReader leitor = null;
+    private OutputStreamWriter escritor = null;
+    private Scanner scanner = null;
+    // leitor pra ser mais rapido
+    private BufferedReader bufferLeitor = null;
+    // leitor pra ser mais rapido
+    private BufferedWriter bufferEscritor = null;
+
+    private String ip = Global.IP_CONEXAO;
+    private int porta = Global.PORTA_CONEXAO;
 }

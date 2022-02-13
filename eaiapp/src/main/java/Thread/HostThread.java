@@ -11,7 +11,7 @@ public class HostThread extends Thread {
     private int porta = 8080;
     private ServerFactory fabricaServidores = null;
     public boolean on = false;
-    private HashMap<String, ServerConnectionThread> servidores = new HashMap<String, ServerConnectionThread>();
+    private HashMap<String, HostCommunicationThread> servidores = new HashMap<String, HostCommunicationThread>();
 
     public HostThread(int porta) {
         this.porta = porta;
@@ -33,9 +33,9 @@ public class HostThread extends Thread {
             do {
                 System.out.println("Aguardando conexao...");
                 Socket conn = server.accept();
-                ServerConnectionThread servidor = fabricaServidores.criarConexao(conn);
+                HostCommunicationThread servidor = fabricaServidores.criarConexao(conn);
                 servidor.start();
-                servidores.put(conn.getInetAddress().getHostAddress(), servidor);
+               // servidores.put(conn.getInetAddress().getHostAddress(), servidor);
             } while (on);
 
             server.close();

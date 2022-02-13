@@ -13,18 +13,21 @@ import javax.swing.JButton;
 import javax.swing.WindowConstants;
 import javax.swing.table.AbstractTableModel;
 
+import Data.BancoConversas;
+
 public class JTableLista extends AbstractTableModel {
-    private List<Conversa> conversa = new ArrayList<>();
-    private String[] columNome = {"Nome", "Ultima Mensagem", "Porta"};
-    
-    public JTableLista(){
+    private List<Conversa> conversa ;
+    private String[] columNome = { "Nome", "Ultima Mensagem", "Porta" };
+
+    public JTableLista() {
+        conversa = BancoConversas.minhasConversas;
     }
-    
+
     @Override
     public String getColumnName(int column) {
         return columNome[column];
     }
-    
+
     @Override
     public int getRowCount() {
         return conversa.size();
@@ -37,7 +40,7 @@ public class JTableLista extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch(columnIndex){
+        switch (columnIndex) {
             case 0:
                 return conversa.get(rowIndex).getNome();
             case 1:
@@ -47,26 +50,31 @@ public class JTableLista extends AbstractTableModel {
         }
         return null;
     }
-    
-    public void addConversa(Conversa c){
-        this.conversa.add(c);
+
+    public void refresh() {
+
         this.fireTableDataChanged();
     }
 
-    //talvez aqui tenha que ter um atualizar a tabela
-    //ai ele da um refresh na tabela
-    
-    
-    public void removerConversa(int rowIndex){
+    public void addConversa(Conversa c) {
+        this.conversa.add(c);
+
+        this.fireTableDataChanged();
+    }
+
+    // talvez aqui tenha que ter um atualizar a tabela
+    // ai ele da um refresh na tabela
+
+    public void removerConversa(int rowIndex) {
         this.conversa.remove(rowIndex);
         this.fireTableRowsDeleted(rowIndex, rowIndex);
     }
-    
-    public void abrirConversa(int rowIndex){
+
+    public void abrirConversa(int rowIndex) {
         Conversa c = this.conversa.get(rowIndex);
         ConversaCliente cc = new ConversaCliente(c);
         cc.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         cc.setVisible(true);
     }
-    
+
 }

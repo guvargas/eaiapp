@@ -1,10 +1,10 @@
 package Connection;
 
-import Thread.ClientThread;
+import Thread.SenderThread;
 
 public class FooClient {
  public static void main(String[] args) {
-     ClientThread client= new ClientThread();
+     SenderThread client= new SenderThread();
      client.start();
  }   
 }

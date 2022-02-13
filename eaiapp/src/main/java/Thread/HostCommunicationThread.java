@@ -7,15 +7,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-public class ServerConnectionThread extends Thread {
+public class HostCommunicationThread extends Thread {
 
-    public ServerConnectionThread(Socket conn) {
+    public HostCommunicationThread(Socket conn) {
         this.conexao = conn;
     }
 
     @Override
     public void run() {
-        on= true;
+        on = true;
         try {
             System.out.println("Thread de conexao com o servidor iniciada.");
             // leitor pega do que vem
@@ -26,39 +26,36 @@ public class ServerConnectionThread extends Thread {
             escritor = new OutputStreamWriter(conexao.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
 
-
-            bufferEscritor.write("conectado;"+this.getId());
+            bufferEscritor.write("confirmacao;conectado;" + this.getId());
             bufferEscritor.newLine();
             bufferEscritor.flush();
 
-            while (on) {
-                String msgFromClient = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
-                System.out.println("Client enviou: " + msgFromClient);
-                bufferEscritor.write("Mensagem recebida pelo servidor");
-                bufferEscritor.newLine();
-                // pra eficiencia
-                bufferEscritor.flush();
-                if (msgFromClient.equals("tchau")) {
-                    break;
-                }
-            }
+            // while (on) {
+            String msgFromClient = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
+            System.out.println("Client enviou: " + msgFromClient);
+            bufferEscritor.write("confirmacao;recebido;" + this.getId());
+            bufferEscritor.newLine();
+            // pra eficiencia
+            bufferEscritor.flush();
+            // }
 
-            fecharConexoes();
+            // fecharConexoes();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             fecharConexoes();
         }
 
     }
 
     public void turnOff() {
-        on= false;
-        //this.stop();
+        on = false;
+        this.stop();
     }
 
     private void fecharConexoes() {
         try {
+            System.out.println("Fechando conexoes...");
             if (bufferEscritor != null) {
                 bufferEscritor.close();
             }
@@ -79,9 +76,8 @@ public class ServerConnectionThread extends Thread {
         }
     }
 
- 
     private Socket conexao = null;
-    public Boolean on= false;
+    public Boolean on = false;
 
     // leitor e escritor
     private InputStreamReader leitor = null;
@@ -92,6 +88,5 @@ public class ServerConnectionThread extends Thread {
 
     // leitor pra ser mais rapido
     private BufferedWriter bufferEscritor = null;
-
 
 }

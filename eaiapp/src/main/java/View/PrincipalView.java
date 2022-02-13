@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.ClienteController;
 import Model.Conversa;
 import Utils.JTableLista;
 
@@ -17,8 +18,9 @@ public class PrincipalView extends javax.swing.JFrame {
     /**
      * Creates new form PrincipalView
      */
-    JTableLista tb = new JTableLista();
+    JTableLista tb = new JTableLista(); 
     int porta;
+    private ClienteController cliente = null;
     
     public PrincipalView() {
         initComponents();
@@ -30,6 +32,14 @@ public class PrincipalView extends javax.swing.JFrame {
         initComponents();
         tbConversas.setModel(tb);
         this.porta = porta;
+    }
+
+    public PrincipalView(int porta, ClienteController cc) {
+        tbConversas.setModel(tb);
+        this.porta = porta;
+        cliente = cc;
+        cliente.ficarOnline();
+        initComponents();
     }
 
     /**
@@ -154,8 +164,12 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void btAddConversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddConversaActionPerformed
         if( !tfNome.getText().isEmpty() && !tfIP.getText().isBlank() && !tfPorta.getText().isBlank() && tfPorta.getText().matches("[+-]?\\d*(\\.\\d+)?")){
-            Conversa c = new Conversa(tfNome.getText(), "PLACEHOLDER", tfIP.getText(), Integer.parseInt(tfPorta.getText()));
-            tb.addConversa(c);
+            //manda pro controller resolver
+            //ip nome e porta
+            cliente.adicionarConversa(tfIP.getText(),tfNome.getText(),Integer.parseInt(tfPorta.getText()));
+
+            //tb.addConversa(c);
+            tb.refresh();
         }
     }//GEN-LAST:event_btAddConversaActionPerformed
 
