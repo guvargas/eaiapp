@@ -15,6 +15,7 @@ public class MessageTreatment {
             Mensagem m = new Mensagem(mensagemCortadinha[4], mensagemCortadinha[3]);
             for (Conversa c : BancoConversas.minhasConversas) {
                 if (c.getIp().equals(sender)) {
+                    System.out.println("Conversa encontrada");
                     c.addMensagem(m);
                     jaExiste = true;
                 }
@@ -22,13 +23,14 @@ public class MessageTreatment {
 
             if (!jaExiste) {
                 String[] s = sender.split(":");
-
+                System.out.println("Conversa nao encontrada");
                 Conversa c = new Conversa(s[0], mensagemCortadinha[3], Integer.parseInt(s[1]));
 
                 c.addMensagem(m);
                 BancoConversas.minhasConversas.add(c);
             }
         }
+        cc.refrescar();
     }
 
     public String obaobaQueroMandarPraALguem(String msg, Pessoa p, Conversa c) {

@@ -4,10 +4,12 @@ import Data.BancoConversas;
 import Data.BancoMensagens;
 import Helper.MessageTreatment;
 import Model.Conversa;
+import Model.Mensagem;
 import Model.Pessoa;
 import Thread.SenderThread;
 import Thread.HostThread;
 import View.ConexaoView;
+import View.PrincipalView;
 
 public class MainController {
 
@@ -28,7 +30,6 @@ public class MainController {
 
     public void messageReceived(String msg, String ip) {
         mt.oraoraUmaMensagemEba(msg, ip, this);
-        
     }
 
     public void iniciarConexao() {
@@ -54,10 +55,11 @@ public class MainController {
     }
 
     // enviar mensagem
-    public String enviarMensagem(String mensagem, Conversa contato) {
+    public void enviarMensagem(String mensagem, Conversa contato) {
+        Mensagem m = new Mensagem(mensagem, java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")));
+        contato.addMensagem(m);
         sendToClient(contato, mt.obaobaQueroMandarPraALguem(mensagem, usuario, contato));
-        return new String(mensagem + "\n Enviada às "
-                + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")));
+
     }
 
     private void sendToClient(Conversa c, String msg) {
@@ -66,9 +68,18 @@ public class MainController {
         client.start();
     }
 
-    BancoMensagens banco = null;
-    BancoConversas bancoConversa = null;
+    public void setTelaPrincipal(PrincipalView principalView) {
+        viewPrincipal=  principalView;
+    }
+
+    public void refrescar(){
+        viewPrincipal.refrescar();
+    }
+    private PrincipalView viewPrincipal =null;
+    private BancoMensagens banco = null;
+    private BancoConversas bancoConversa = null;
     private Pessoa usuario = null;
     private HostThread ht = null;
     private MessageTreatment mt = null;
+    
 }

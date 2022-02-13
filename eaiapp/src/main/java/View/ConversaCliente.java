@@ -4,8 +4,12 @@
  */
 package View;
 
+import java.util.List;
+
 import Controller.MainController;
+import Data.BancoConversas;
 import Model.Conversa;
+import Model.Mensagem;
 
 /**
  *
@@ -31,15 +35,7 @@ public class ConversaCliente extends javax.swing.JFrame {
         controller=clienteController;
         lbTitulo.setText(c.getNome());
     }
-    /*
-    
-     public ConversaCliente(ClienteController clienteController) {
-        controller=clienteController;
-        initComponents();
-    }
-
-    */
-
+  
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,7 +122,8 @@ public class ConversaCliente extends javax.swing.JFrame {
     private void btEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnviarMensagemActionPerformed
     String mensagem = "";
     mensagem = tfMensagem.getText();
-    atualizarDisplay(controller.enviarMensagem(mensagem,conversa));
+    controller.enviarMensagem(mensagem,conversa);
+    refrescar();
     tfMensagem.setText("");
 
     }//GEN-LAST:event_btEnviarMensagemActionPerformed
@@ -136,7 +133,25 @@ public class ConversaCliente extends javax.swing.JFrame {
         taDisplay.setText(taDisplay.getText()+"\n"+mensagem);
     }
 
+    public void refrescar(){
+        taDisplay.setText("");
 
+        List<Mensagem> mensagens=null;
+        for (Conversa c : BancoConversas.minhasConversas) {
+            if(c.getNome().equals(conversa.getNome())){
+               mensagens = c.getMensagens();
+            }
+        }
+        if(mensagens!= null){
+            atualizarMensagens(mensagens);
+        }
+    }
+
+    private void atualizarMensagens(List<Mensagem> mensagens){
+        for (Mensagem m : mensagens) {
+            atualizarDisplay(m.getConteudo()+ "\n Enviada às "+m.getHorario());
+        }
+    }
     /**
      * @param args the command line arguments
      */

@@ -25,12 +25,7 @@ public class PrincipalView extends javax.swing.JFrame {
     public PrincipalView() {
         initComponents();
     }
-    /*
-    public PrincipalView(int porta) {
-        initComponents();
-        tbConversas.setModel(tb);
-        this.porta = porta;
-    }*/
+   
 
     public PrincipalView(int porta, MainController cc) {
         initComponents();
@@ -38,7 +33,7 @@ public class PrincipalView extends javax.swing.JFrame {
         this.porta = porta;
         cliente = cc;
         cliente.ficarOnline();
-      
+        cliente.setTelaPrincipal(this);
     }
 
     /**
@@ -168,13 +163,18 @@ public class PrincipalView extends javax.swing.JFrame {
             cliente.adicionarConversa(tfIP.getText(),tfNome.getText(),Integer.parseInt(tfPorta.getText()));
 
             //tb.addConversa(c);
-            tb.refresh();
+           refrescar();
         }
     }//GEN-LAST:event_btAddConversaActionPerformed
 
     private void tfPortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPortaActionPerformed
         
     }//GEN-LAST:event_tfPortaActionPerformed
+
+    public void refrescar(){
+        tb.refresh();
+    }
+
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if(tbConversas.getSelectedRow() != -1){
