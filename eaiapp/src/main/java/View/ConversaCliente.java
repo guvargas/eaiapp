@@ -25,17 +25,22 @@ public class ConversaCliente extends javax.swing.JFrame {
         initComponents();
     }
     
-   public ConversaCliente(Conversa c) {
+   public ConversaCliente(Conversa c,ClienteController clienteController){
         initComponents();
         conversa = c;
+        controller=clienteController;
         lbTitulo.setText(c.getNome());
     }
-
-    public ConversaCliente(ClienteController clienteController) {
+    /*
+    
+     public ConversaCliente(ClienteController clienteController) {
         controller=clienteController;
         initComponents();
     }
 
+    */
+
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

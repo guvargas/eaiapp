@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.WindowConstants;
 import javax.swing.table.AbstractTableModel;
 
+import Controller.ClienteController;
 import Data.BancoConversas;
 
 public class JTableLista extends AbstractTableModel {
@@ -70,9 +71,9 @@ public class JTableLista extends AbstractTableModel {
         this.fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
-    public void abrirConversa(int rowIndex) {
+    public void abrirConversa(int rowIndex, ClienteController cliente) {
         Conversa c = this.conversa.get(rowIndex);
-        ConversaCliente cc = new ConversaCliente(c);
+        ConversaCliente cc = new ConversaCliente(c,cliente);
         cc.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         cc.setVisible(true);
     }

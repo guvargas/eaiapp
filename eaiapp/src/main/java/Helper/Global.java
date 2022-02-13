@@ -7,5 +7,5 @@ public class Global {
     public static final String ENCODER_STRING = "ISO-8859-1";
     //ip pc vargas = "192.168.18.195";
     //ip notebook = "192.168.18.187";
-    
+      //ip sarah = "192.168.18.147";
 }

@@ -63,7 +63,7 @@ public class ClienteController {
     // enviar mensagem
     public String enviarMensagem(String mensagem) {
         BancoMensagens.filaMensagens.add("Mensagem;" + nome + ";"
-                + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("DD:HH:mm")) + ";"
+                + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ";"
                 + mensagem);
 
         String s = "";

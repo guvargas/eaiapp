@@ -18,7 +18,11 @@ public class Conversa {
     }
 
     public Mensagem getUltimaMensagem() {
-        return mensagens.get(mensagens.size() - 1);
+        if(mensagens.size()==0){
+            return new Mensagem(" ", " ");
+        }else{
+            return mensagens.get(mensagens.size() - 1);
+        }
     }
 
     public void addMensagem(Mensagem mensagem) {

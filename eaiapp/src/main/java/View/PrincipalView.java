@@ -24,15 +24,13 @@ public class PrincipalView extends javax.swing.JFrame {
     
     public PrincipalView() {
         initComponents();
-        tbConversas.setModel(tb);
-        porta = 0;
     }
-    
+    /*
     public PrincipalView(int porta) {
         initComponents();
         tbConversas.setModel(tb);
         this.porta = porta;
-    }
+    }*/
 
     public PrincipalView(int porta, ClienteController cc) {
         initComponents();
@@ -186,7 +184,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void btEntrarConversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarConversaActionPerformed
         if(tbConversas.getSelectedRow() != -1){
-            tb.abrirConversa(tbConversas.getSelectedRow());
+            tb.abrirConversa(tbConversas.getSelectedRow(),cliente);
         }
     }//GEN-LAST:event_btEntrarConversaActionPerformed
 
