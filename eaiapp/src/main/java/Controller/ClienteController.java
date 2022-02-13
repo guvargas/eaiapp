@@ -2,6 +2,7 @@ package Controller;
 
 import Data.BancoMensagens;
 import Thread.ClientThread;
+import Thread.HostThread;
 import View.Login;
 
 public class ClienteController {
@@ -9,6 +10,7 @@ public class ClienteController {
     Login login = null;
     BancoMensagens banco = null;
     private String nome,senha;
+    private HostThread ht=null; 
 
     // login
     public ClienteController() {
@@ -18,6 +20,10 @@ public class ClienteController {
     public void iniciarConexao() {
         ClientThread client= new ClientThread();
         client.start();
+    }
+
+    public void podeConectarComigo(int porta){
+        ht = new HostThread(porta);
     }
 
     public void realizarLogin(String login, String senha) {

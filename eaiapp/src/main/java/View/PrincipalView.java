@@ -43,7 +43,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbConversas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btAddConversa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tfIP = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -68,10 +68,10 @@ public class PrincipalView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbConversas);
 
-        jButton1.setText("Adicionar nova conversa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btAddConversa.setText("Adicionar nova conversa");
+        btAddConversa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btAddConversaActionPerformed(evt);
             }
         });
 
@@ -122,7 +122,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btAddConversa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btEntrarConversa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -137,7 +137,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btAddConversa)
                     .addComponent(jLabel1)
                     .addComponent(tfIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -152,12 +152,12 @@ public class PrincipalView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btAddConversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddConversaActionPerformed
         if( !tfNome.getText().isEmpty() && !tfIP.getText().isBlank() && !tfPorta.getText().isBlank() && tfPorta.getText().matches("[+-]?\\d*(\\.\\d+)?")){
             Conversa c = new Conversa(tfNome.getText(), "PLACEHOLDER", tfIP.getText(), Integer.parseInt(tfPorta.getText()));
             tb.addConversa(c);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btAddConversaActionPerformed
 
     private void tfPortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPortaActionPerformed
         
@@ -211,9 +211,9 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddConversa;
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btEntrarConversa;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

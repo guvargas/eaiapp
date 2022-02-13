@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Pessoa {
     private String ip, login, senha;
+    private int porta =8080;
     private List<Conversa> conversas;
 
 
@@ -13,6 +14,22 @@ public class Pessoa {
         this.login = login;
         this.senha = senha;
         conversas = new ArrayList<Conversa>();
+    }
+
+    public Pessoa(String ip, String login, String senha,int porta) {
+        this.ip = ip;
+        this.porta= porta;
+        this.login = login;
+        this.senha = senha;
+        conversas = new ArrayList<Conversa>();
+    }
+    public void setPorta(int porta) {
+        this.porta = porta;
+        
+    }
+
+    public int getPorta() {
+        return porta;
     }
 
     public String getIp() {

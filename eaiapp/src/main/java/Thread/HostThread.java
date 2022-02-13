@@ -7,15 +7,20 @@ import java.util.HashMap;
 
 import Helper.ServerFactory;
 
-public class ServerMainThread extends Thread {
+public class HostThread extends Thread {
     private int porta = 8080;
     private ServerFactory fabricaServidores = null;
     public boolean on = false;
-   private HashMap<String, ServerConnectionThread> servidores = new HashMap<String, ServerConnectionThread>();
+    private HashMap<String, ServerConnectionThread> servidores = new HashMap<String, ServerConnectionThread>();
 
-    public ServerMainThread(int porta) {
+    public HostThread(int porta) {
         this.porta = porta;
         fabricaServidores = new ServerFactory();
+    }
+
+    public void desligarHost() {
+        on = false;
+        this.stop();
     }
 
     @Override
