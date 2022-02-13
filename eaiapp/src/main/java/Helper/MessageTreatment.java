@@ -12,7 +12,7 @@ public class MessageTreatment {
         String[] mensagemCortadinha = msg.split(";");
         if (mensagemCortadinha[0].equals("mensagem")) {
             Boolean jaExiste = false;
-            Mensagem m = new Mensagem(mensagemCortadinha[4], mensagemCortadinha[3]);
+            Mensagem m = new Mensagem(mensagemCortadinha[3], mensagemCortadinha[2]);
             for (Conversa c : BancoConversas.minhasConversas) {
                 if (c.getIp().equals(sender)) {
                     System.out.println("Conversa encontrada");
@@ -24,7 +24,7 @@ public class MessageTreatment {
             if (!jaExiste) {
                 String[] s = sender.split(":");
                 System.out.println("Conversa nao encontrada");
-                Conversa c = new Conversa(s[0], mensagemCortadinha[3], Integer.parseInt(s[1]));
+                Conversa c = new Conversa(s[0], mensagemCortadinha[1], Integer.parseInt(s[1]));
 
                 c.addMensagem(m);
                 BancoConversas.minhasConversas.add(c);
