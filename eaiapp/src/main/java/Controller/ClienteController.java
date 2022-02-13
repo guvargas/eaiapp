@@ -11,7 +11,7 @@ import View.Login;
 public class ClienteController {
 
     BancoMensagens banco = null;
-    
+
     BancoConversas bancoConversa = null;
     private String nome, senha;
     private HostThread ht = null;
@@ -28,7 +28,8 @@ public class ClienteController {
 
     public void adicionarConversa(String ip, String nome, int porta) {
         bancoConversa.addConversa(new Conversa(ip, nome, porta));
-    }	
+    }
+
     public void iniciarConexao() {
         SenderThread client = new SenderThread();
         client.start();
@@ -61,7 +62,8 @@ public class ClienteController {
     }
 
     // enviar mensagem
-    public String enviarMensagem(String mensagem) {
+    public String enviarMensagem(String mensagem, Conversa contato) {
+
         BancoMensagens.filaMensagens.add("Mensagem;" + nome + ";"
                 + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ";"
                 + mensagem);
@@ -69,9 +71,15 @@ public class ClienteController {
         String s = "";
         s = mensagem + "\n Enviada às "
                 + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+
+        sendToClient(contato);
         return s;
 
         // enviar mensagem para o servidor
     }
 
+    private void sendToClient(Conversa c) {
+        SenderThread client = new SenderThread(c);
+        client.start();
+    }
 }

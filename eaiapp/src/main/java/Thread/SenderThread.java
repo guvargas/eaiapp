@@ -10,12 +10,17 @@ import java.util.Scanner;
 
 import Data.BancoMensagens;
 import Helper.Global;
+import Model.Conversa;
 
 public class SenderThread extends Thread {
 
-
     public SenderThread() {
 
+    }
+
+    public SenderThread(Conversa conversa) {
+        this.ip = conversa.getIP();
+        this.porta = conversa.getPorta();
     }
 
     public SenderThread(String ip, int porta) {
@@ -43,33 +48,30 @@ public class SenderThread extends Thread {
             escritor = new OutputStreamWriter(socket.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
 
-          
-
             // System.out.println("Server: " + new
             // String(bufferLeitor.readLine().getBytes()));
 
-          //  do {
+            // do {
 
-            //    if (!BancoMensagens.filaMensagens.isEmpty()) {
-                    String msgToSend = BancoMensagens.filaMensagens.get(0);
-                    BancoMensagens.filaMensagens.remove(0);
-                    bufferEscritor.write(msgToSend);
-                    bufferEscritor.newLine();
-                    // pra eficiencia
-                    bufferEscritor.flush();
-                    // esperando resposta do servidor
-                    
-                     String respostaServer = new String(bufferLeitor.readLine().getBytes());//
-                     System.out.println("Server: " + respostaServer);
-                     
+            // if (!BancoMensagens.filaMensagens.isEmpty()) {
+            String msgToSend = BancoMensagens.filaMensagens.get(0);
+            BancoMensagens.filaMensagens.remove(0);
+            bufferEscritor.write(msgToSend);
+            bufferEscritor.newLine();
+            // pra eficiencia
+            bufferEscritor.flush();
+            // esperando resposta do servidor
 
-             //   } else {
-              //      sleep(500);
-              //  }
+            String respostaServer = new String(bufferLeitor.readLine().getBytes());//
+            System.out.println("Server: " + respostaServer);
 
-          //  } while (true);
-          fecharConexoes();
-        } catch (IOException e ) {
+            // } else {
+            // sleep(500);
+            // }
+
+            // } while (true);
+            fecharConexoes();
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             fecharConexoes();
@@ -101,6 +103,7 @@ public class SenderThread extends Thread {
             e.printStackTrace();
         }
     }
+
     private Socket socket = null;
     private InputStreamReader leitor = null;
     private OutputStreamWriter escritor = null;
