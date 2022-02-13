@@ -5,6 +5,7 @@
 package View;
 
 import Controller.ClienteController;
+import Model.Conversa;
 
 /**
  *
@@ -17,8 +18,17 @@ public class ConversaCliente extends javax.swing.JFrame {
     /**
      * Creates new form ConversaCliente
      */
-    public ConversaCliente() {
+    
+    Conversa conversa = null;
+    
+    public ConversaCliente(){
         initComponents();
+    }
+    
+   public ConversaCliente(Conversa c) {
+        initComponents();
+        conversa = c;
+        lbTitulo.setText(c.getNome());
     }
 
     public ConversaCliente(ClienteController clienteController) {
@@ -40,7 +50,7 @@ public class ConversaCliente extends javax.swing.JFrame {
         taScroll = new javax.swing.JScrollPane();
         taDisplay = new javax.swing.JTextArea();
         btEnviarMensagem = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lbTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,8 +69,8 @@ public class ConversaCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel1.setText("Conversa com:");
+        lbTitulo.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        lbTitulo.setText("Conversa com:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -72,7 +82,7 @@ public class ConversaCliente extends javax.swing.JFrame {
                     .addComponent(taScroll)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(tfMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -84,7 +94,7 @@ public class ConversaCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(taScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,8 +170,8 @@ public class ConversaCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEnviarMensagem;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextArea taDisplay;
     private javax.swing.JScrollPane taScroll;
     private javax.swing.JTextField tfMensagem;

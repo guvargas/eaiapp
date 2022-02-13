@@ -7,4 +7,22 @@ public class Mensagem {
         this.conteudo = conteudo;
         this.horario = horario;
     }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+    
+    
 }

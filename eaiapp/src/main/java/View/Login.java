@@ -12,6 +12,7 @@ import Controller.ClienteController;
  */
 public class Login extends javax.swing.JFrame {
 private ClienteController c;
+    private ConexaoView cv;
     /**
      * Creates new form MainView
      */
@@ -165,7 +166,9 @@ private ClienteController c;
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         String login = tfLogin.getText();
         String senha = tfSenha.getText();
-
+        cv = new ConexaoView();
+        cv.setVisible(true);
+        this.dispose();
 
         if (login.equals("") || senha.equals("")) {
             txtResultado.setText("Preencha os campos!");
