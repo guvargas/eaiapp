@@ -114,15 +114,6 @@ public class ConexaoView extends javax.swing.JFrame {
     }// GEN-LAST:event_tfNomeActionPerformed
 
     private void btSalvaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btSalvaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btSalvaActionPerformed
-
-    private void tfPortaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_tfPortaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_tfPortaActionPerformed
-
-    private void btSalvaPortaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btSalvaPortaActionPerformed
-
         // verifica se a porta esta vazia ou zoada
         if (!tfPorta.getText().isEmpty() && tfPorta.getText().matches("[+-]?\\d*(\\.\\d+)?")
                 && !tfNome.getText().isEmpty()) {
@@ -136,6 +127,14 @@ public class ConexaoView extends javax.swing.JFrame {
             pv.setVisible(true);
 
         }
+    }// GEN-LAST:event_btSalvaActionPerformed
+
+    private void tfPortaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_tfPortaActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_tfPortaActionPerformed
+
+    private void btSalvaPortaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btSalvaPortaActionPerformed
+
     }// GEN-LAST:event_btSalvaPortaActionPerformed
 
     /**
