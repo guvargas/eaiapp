@@ -9,6 +9,7 @@ import Model.Pessoa;
 import Thread.SenderThread;
 import Thread.HostThread;
 import View.ConexaoView;
+import View.ConversaCliente;
 import View.PrincipalView;
 
 public class MainController {
@@ -74,7 +75,16 @@ public class MainController {
 
     public void refrescar(){
         viewPrincipal.refrescar();
+        if(conversaAtual!=null){
+            conversaAtual.refrescar();
+        }
     }
+
+    public void setConversaAtual(ConversaCliente conversaAtual) {
+        this.conversaAtual = conversaAtual;
+    }
+
+    private ConversaCliente conversaAtual = null;
     private PrincipalView viewPrincipal =null;
     private BancoMensagens banco = null;
     private BancoConversas bancoConversa = null;
