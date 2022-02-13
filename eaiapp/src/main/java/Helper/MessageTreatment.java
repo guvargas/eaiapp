@@ -24,7 +24,7 @@ public class MessageTreatment {
             if (!jaExiste) {
                 String[] s = sender.split(":");
                 System.out.println("Conversa nao encontrada");
-                Conversa c = new Conversa(s[0], mensagemCortadinha[2], Integer.parseInt(mensagemCortadinha[1]));
+                Conversa c = new Conversa(s[0].split("/")[1], mensagemCortadinha[2], Integer.parseInt(mensagemCortadinha[1]));
 
                 c.addMensagem(m);
                 BancoConversas.minhasConversas.add(c);
