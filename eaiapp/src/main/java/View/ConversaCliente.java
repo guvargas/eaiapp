@@ -35,6 +35,7 @@ public class ConversaCliente extends javax.swing.JFrame {
         controller=clienteController;
         controller.setConversaAtual(this);
         lbTitulo.setText(c.getNome());
+        refrescar();
     }
   
    
