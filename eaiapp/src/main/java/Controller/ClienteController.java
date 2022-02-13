@@ -19,6 +19,7 @@ public class ClienteController {
     // login
     public ClienteController() {
         banco = new BancoMensagens();
+        bancoConversa = new BancoConversas();
     }
 
     public void definirPorta(int porta) {

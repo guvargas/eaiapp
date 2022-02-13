@@ -35,11 +35,12 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     public PrincipalView(int porta, ClienteController cc) {
+        initComponents();
         tbConversas.setModel(tb);
         this.porta = porta;
         cliente = cc;
         cliente.ficarOnline();
-        initComponents();
+      
     }
 
     /**
