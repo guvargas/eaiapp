@@ -2,7 +2,6 @@ package Controller;
 
 import Data.BancoMensagens;
 import Thread.ClientThread;
-import View.ConversaCliente;
 import View.Login;
 
 public class ClienteController {
@@ -25,7 +24,7 @@ public class ClienteController {
     
         BancoMensagens.filaMensagens.add("Login;" + login + ";" + senha);
         nome= login;
-        senha= senha;
+       this.senha= senha;
     }
 
     public void abrirTela() {

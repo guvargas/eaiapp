@@ -1,5 +1,4 @@
 import Controller.ClienteController;
-import Thread.ClientThread;
 
 public class PrincipalClient {
     public static void main(String[] args) {
