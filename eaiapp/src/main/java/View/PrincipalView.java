@@ -32,6 +32,7 @@ public class PrincipalView extends javax.swing.JFrame {
         tbConversas.setModel(tb);
         this.porta = porta;
         cliente = cc;
+        cliente.definirPorta(porta);
         cliente.ficarOnline();
         cliente.setTelaPrincipal(this);
     }
