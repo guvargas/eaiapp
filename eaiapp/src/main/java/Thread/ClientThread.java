@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-import Data.BancoClient;
+import Data.BancoMensagens;
 import Helper.Global;
 
 public class ClientThread extends Thread {
@@ -46,10 +46,10 @@ public class ClientThread extends Thread {
 
             do {
 
-                if (!BancoClient.filaMensagens.isEmpty()) {
+                if (!BancoMensagens.filaMensagens.isEmpty()) {
                     // String msgToSend = scanner.nextLine();
-                    String msgToSend = BancoClient.filaMensagens.get(0);
-                    BancoClient.filaMensagens.remove(0);
+                    String msgToSend = BancoMensagens.filaMensagens.get(0);
+                    BancoMensagens.filaMensagens.remove(0);
                     bufferEscritor.write(msgToSend);
                     bufferEscritor.newLine();
                     // pra eficiencia

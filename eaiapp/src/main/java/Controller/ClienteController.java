@@ -1,6 +1,6 @@
 package Controller;
 
-import Data.BancoClient;
+import Data.BancoMensagens;
 import Thread.ClientThread;
 import View.ConversaCliente;
 import View.Login;
@@ -8,12 +8,12 @@ import View.Login;
 public class ClienteController {
 
     Login login = null;
-    BancoClient banco = null;
+    BancoMensagens banco = null;
     private String nome,senha;
 
     // login
     public ClienteController() {
-    banco = new BancoClient();
+    banco = new BancoMensagens();
     }
 
     public void iniciarConexao() {
@@ -23,7 +23,7 @@ public class ClienteController {
 
     public void realizarLogin(String login, String senha) {
     
-        BancoClient.filaMensagens.add("Login;" + login + ";" + senha);
+        BancoMensagens.filaMensagens.add("Login;" + login + ";" + senha);
         nome= login;
         senha= senha;
     }
@@ -36,7 +36,7 @@ public class ClienteController {
 
     // enviar mensagem
     public String enviarMensagem(String mensagem) {
-        BancoClient.filaMensagens.add("Mensagem;" +nome + ";" + senha+ ";" + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("DD:HH:mm")) + ";" + mensagem);
+        BancoMensagens.filaMensagens.add("Mensagem;" +nome + ";" + senha+ ";" + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("DD:HH:mm")) + ";" + mensagem);
 
 
         String s = "";
