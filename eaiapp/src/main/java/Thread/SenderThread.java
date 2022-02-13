@@ -15,11 +15,14 @@ import Model.Conversa;
 public class SenderThread extends Thread {
 
     public SenderThread() {
+    }
 
+    public void setMensagem(String msg) {
+        this.msg = msg;
     }
 
     public SenderThread(Conversa conversa) {
-        this.ip = conversa.getIP();
+        this.ip = conversa.getIp();
         this.porta = conversa.getPorta();
     }
 
@@ -42,9 +45,10 @@ public class SenderThread extends Thread {
     }
 
     private void enviarMensagem() throws IOException {
-        String msgToSend = BancoMensagens.filaMensagens.get(0);
-        BancoMensagens.filaMensagens.remove(0);
-        bufferEscritor.write(msgToSend);
+      //  String msg = BancoMensagens.filaMensagens.get(0);
+       // BancoMensagens.filaMensagens.remove(0);
+
+        bufferEscritor.write(msg);
         bufferEscritor.newLine();
         // pra eficiencia
         bufferEscritor.flush();
@@ -124,7 +128,7 @@ public class SenderThread extends Thread {
     private BufferedReader bufferLeitor = null;
     // leitor pra ser mais rapido
     private BufferedWriter bufferEscritor = null;
-
+    private String msg;
     private String ip = Global.IP_CONEXAO;
     private int porta = Global.PORTA_CONEXAO;
 }

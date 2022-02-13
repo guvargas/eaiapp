@@ -1,5 +1,4 @@
 import Controller.MainController;
-import Model.Pessoa;
 
 public class PrincipalClient {
     public static void main(String[] args) {

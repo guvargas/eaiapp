@@ -26,9 +26,9 @@ public class MainController {
         bancoConversa.addConversa(new Conversa(ip, nome, porta));
     }
 
-    public void messageReceived(String msg) {
-        mt.oraoraUmaMensagemEba(msg, this);
-
+    public void messageReceived(String msg, String ip) {
+        mt.oraoraUmaMensagemEba(msg, ip, this);
+        
     }
 
     public void iniciarConexao() {
@@ -55,31 +55,20 @@ public class MainController {
 
     // enviar mensagem
     public String enviarMensagem(String mensagem, Conversa contato) {
-
-        BancoMensagens.filaMensagens.add("mensagem;" + nome + ";"
-                + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ";"
-                + mensagem);
-
-        String s = "";
-        s = mensagem + "\n Enviada às "
-                + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
-
-        sendToClient(contato);
-        return s;
-
-        // enviar mensagem para o servidor
+        sendToClient(contato, mt.obaobaQueroMandarPraALguem(mensagem, usuario, contato));
+        return new String(mensagem + "\n Enviada às "
+                + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")));
     }
 
-    private void sendToClient(Conversa c) {
+    private void sendToClient(Conversa c, String msg) {
         SenderThread client = new SenderThread(c);
+        client.setMensagem(msg);
         client.start();
     }
 
     BancoMensagens banco = null;
-
     BancoConversas bancoConversa = null;
     private Pessoa usuario = null;
-    private String nome;
     private HostThread ht = null;
     private MessageTreatment mt = null;
 }

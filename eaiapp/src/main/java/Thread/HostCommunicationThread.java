@@ -5,6 +5,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 import Controller.MainController;
@@ -15,7 +18,7 @@ public class HostCommunicationThread extends Thread {
         this.conexao = conn;
     }
 
-    private void enviaMensagem(String s) throws IOException{
+    private void enviaMensagem(String s) throws IOException {
         bufferEscritor.write(s);
         bufferEscritor.newLine();
         bufferEscritor.flush();
@@ -25,7 +28,7 @@ public class HostCommunicationThread extends Thread {
     public void run() {
         on = true;
         try {
-            System.out.println("Alguem conectou comigo o ip eh: "+ conexao.getInetAddress().getHostAddress());
+            System.out.println("Alguem conectou comigo o ip eh: " + conexao.getInetAddress().getHostAddress());
 
             // leitor pega do que vem
             leitor = new InputStreamReader(conexao.getInputStream());// ,Global.ENCODER_STRING);
@@ -35,19 +38,18 @@ public class HostCommunicationThread extends Thread {
             escritor = new OutputStreamWriter(conexao.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
 
-            enviaMensagem("confirmacao;conectado;" + this.getId());
+            enviaMensagem("confirmacao;conectado;");
+            // pega o ip
+            InetSocketAddress sockaddr = (InetSocketAddress) conexao.getRemoteSocketAddress();
+            InetAddress inaddr = sockaddr.getAddress();
+            Inet4Address in4addr = (Inet4Address) inaddr;
+            String ip4string = in4addr.toString();
+            System.out.println("IP: " + ip4string + " ip2: " + conexao.getRemoteSocketAddress());
+            clienteController.messageReceived(new String(bufferLeitor.readLine().getBytes()), conexao.getRemoteSocketAddress().toString());
+            enviaMensagem("confirmacao;recebido;");
             
 
-            // while (on) {
-            String msgFromClient = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
-            System.out.println("Client enviou: " + msgFromClient);
-            bufferEscritor.write("confirmacao;recebido;" + this.getId());
-            bufferEscritor.newLine();
-            // pra eficiencia
-            bufferEscritor.flush();
-            // }
-
-            // fecharConexoes();
+            fecharConexoes();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -96,7 +98,7 @@ public class HostCommunicationThread extends Thread {
 
     // leitor pra ser mais rapido
     private BufferedWriter bufferEscritor = null;
-    private MainController clienteController= null;
+    private MainController clienteController = null;
 
     public void setClienteController(MainController clienteController) {
         this.clienteController = clienteController;

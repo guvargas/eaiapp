@@ -29,7 +29,7 @@ public class Conversa {
         mensagens.add(mensagem);
     }
 
-    public String getIP() {
+    public String getIp() {
         return this.IP;
     }
 
