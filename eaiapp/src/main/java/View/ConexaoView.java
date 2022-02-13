@@ -5,7 +5,7 @@
  */
 package View;
 
-import Controller.ClienteController;
+import Controller.MainController;
 
 /**
  *
@@ -13,7 +13,7 @@ import Controller.ClienteController;
  */
 public class ConexaoView extends javax.swing.JFrame {
 
-    ClienteController cliente = null;
+    MainController controller = null;
 
     /**
      * Creates new form ConexaoView
@@ -22,8 +22,8 @@ public class ConexaoView extends javax.swing.JFrame {
         initComponents();
     }
 
-    public ConexaoView(ClienteController client) {
-        cliente = client;
+    public ConexaoView(MainController client) {
+        controller = client;
         initComponents();
     }
 
@@ -34,29 +34,42 @@ public class ConexaoView extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        insiraPorta = new javax.swing.JLabel();
         tfPorta = new javax.swing.JTextField();
-        btSalvaPorta = new javax.swing.JButton();
+        btSalva = new javax.swing.JButton();
+        tfNome = new javax.swing.JTextField();
+        insiraNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Insira a porta:");
+        insiraPorta.setText("Insira a porta:");
 
+        tfPorta.setToolTipText("ex: 8000");
         tfPorta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPortaActionPerformed(evt);
             }
         });
 
-        btSalvaPorta.setText("Salvar Porta");
-        btSalvaPorta.addActionListener(new java.awt.event.ActionListener() {
+        btSalva.setText("Vamos lá");
+        btSalva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvaPortaActionPerformed(evt);
+                btSalvaActionPerformed(evt);
             }
         });
+
+        tfNome.setToolTipText("ex: Ronaldo Fenomeno Copa 92");
+        tfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNomeActionPerformed(evt);
+            }
+        });
+
+        insiraNome.setText("Insira seu nome:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,39 +78,59 @@ public class ConexaoView extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
+                                        .addComponent(insiraPorta)
                                         .addComponent(tfPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 265,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btSalvaPorta))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(87, 87, 87)
+                                                .addComponent(btSalva))
+                                        .addComponent(insiraNome)
+                                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 265,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(18, Short.MAX_VALUE)));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1)
+                                .addComponent(insiraPorta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfPorta, javax.swing.GroupLayout.PREFERRED_SIZE,
                                         javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18,
+                                        Short.MAX_VALUE)
+                                .addComponent(insiraNome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btSalvaPorta)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btSalva)
+                                .addContainerGap()));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_tfNomeActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_tfNomeActionPerformed
+
+    private void btSalvaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btSalvaActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_btSalvaActionPerformed
 
     private void tfPortaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_tfPortaActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_tfPortaActionPerformed
 
     private void btSalvaPortaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btSalvaPortaActionPerformed
-       
-       //verifica se a porta esta vazia ou zoada
-        if (!tfPorta.getText().isEmpty() && tfPorta.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
-      
 
-            cliente.definirPorta(Integer.parseInt(tfPorta.getText()));
-            
-            PrincipalView pv = new PrincipalView(Integer.parseInt(tfPorta.getText()), cliente);
+        // verifica se a porta esta vazia ou zoada
+        if (!tfPorta.getText().isEmpty() && tfPorta.getText().matches("[+-]?\\d*(\\.\\d+)?")
+                && !tfNome.getText().isEmpty()) {
+
+            controller.criarUsuario(tfNome.getText(), Integer.parseInt(tfPorta.getText()));
+            // controller.definirPorta(Integer.parseInt(tfPorta.getText()));
+
+            PrincipalView pv = new PrincipalView(Integer.parseInt(tfPorta.getText()), controller);
             pv.setTitle(tfPorta.getText());
             this.dispose();
             pv.setVisible(true);
@@ -149,8 +182,10 @@ public class ConexaoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btSalvaPorta;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btSalva;
+    private javax.swing.JLabel insiraNome;
+    private javax.swing.JLabel insiraPorta;
+    private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfPorta;
     // End of variables declaration//GEN-END:variables
 }

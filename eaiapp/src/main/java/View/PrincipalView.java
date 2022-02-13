@@ -5,7 +5,7 @@
  */
 package View;
 
-import Controller.ClienteController;
+import Controller.MainController;
 import Model.Conversa;
 import Utils.JTableLista;
 
@@ -20,7 +20,7 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     JTableLista tb = new JTableLista(); 
     int porta;
-    private ClienteController cliente = null;
+    private MainController cliente = null;
     
     public PrincipalView() {
         initComponents();
@@ -32,7 +32,7 @@ public class PrincipalView extends javax.swing.JFrame {
         this.porta = porta;
     }*/
 
-    public PrincipalView(int porta, ClienteController cc) {
+    public PrincipalView(int porta, MainController cc) {
         initComponents();
         tbConversas.setModel(tb);
         this.porta = porta;

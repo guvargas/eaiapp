@@ -2,37 +2,42 @@ package Controller;
 
 import Data.BancoConversas;
 import Data.BancoMensagens;
+import Helper.MessageTreatment;
 import Model.Conversa;
+import Model.Pessoa;
 import Thread.SenderThread;
 import Thread.HostThread;
 import View.ConexaoView;
-import View.Login;
 
-public class ClienteController {
-
-    BancoMensagens banco = null;
-
-    BancoConversas bancoConversa = null;
-    private String nome, senha;
-    private HostThread ht = null;
+public class MainController {
 
     // login
-    public ClienteController() {
+    public MainController() {
+        mt = new MessageTreatment();
         banco = new BancoMensagens();
         bancoConversa = new BancoConversas();
     }
 
     public void definirPorta(int porta) {
-        ht = new HostThread(porta);
+        ht = new HostThread(porta, this);
     }
 
     public void adicionarConversa(String ip, String nome, int porta) {
         bancoConversa.addConversa(new Conversa(ip, nome, porta));
     }
 
+    public void messageReceived(String msg) {
+        mt.oraoraUmaMensagemEba(msg, this);
+
+    }
+
     public void iniciarConexao() {
         SenderThread client = new SenderThread();
         client.start();
+    }
+
+    public void criarUsuario(String nome, int porta) {
+        usuario = new Pessoa(nome, porta);
     }
 
     public void ficarOnline() {
@@ -43,28 +48,15 @@ public class ClienteController {
         ht.desligarHost();
     }
 
-    public void realizarLogin(String login, String senha) {
-
-        BancoMensagens.filaMensagens.add("Login;" + login + ";" + senha);
-        nome = login;
-        this.senha = senha;
-    }
-
     public void abrirTela() {
-        // abrir tela
-        /*
-         * login = new Login(this);
-         * login.setVisible(true);
-         */
         ConexaoView cv = new ConexaoView(this);
         cv.setVisible(true);
-
     }
 
     // enviar mensagem
     public String enviarMensagem(String mensagem, Conversa contato) {
 
-        BancoMensagens.filaMensagens.add("Mensagem;" + nome + ";"
+        BancoMensagens.filaMensagens.add("mensagem;" + nome + ";"
                 + java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ";"
                 + mensagem);
 
@@ -82,4 +74,12 @@ public class ClienteController {
         SenderThread client = new SenderThread(c);
         client.start();
     }
+
+    BancoMensagens banco = null;
+
+    BancoConversas bancoConversa = null;
+    private Pessoa usuario = null;
+    private String nome;
+    private HostThread ht = null;
+    private MessageTreatment mt = null;
 }

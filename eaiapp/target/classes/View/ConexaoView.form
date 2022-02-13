@@ -26,9 +26,14 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="insiraPorta" min="-2" max="-2" attributes="0"/>
                   <Component id="tfPorta" alignment="0" min="-2" pref="265" max="-2" attributes="0"/>
-                  <Component id="btSalvaPorta" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                      <Component id="btSalva" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="insiraNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfNome" alignment="0" min="-2" pref="265" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
@@ -38,34 +43,54 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="insiraPorta" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tfPorta" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <Component id="insiraNome" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btSalvaPorta" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="tfNome" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btSalva" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="insiraPorta">
       <Properties>
         <Property name="text" type="java.lang.String" value="Insira a porta:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfPorta">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="ex: 8000"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPortaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btSalvaPorta">
+    <Component class="javax.swing.JButton" name="btSalva">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Salvar Porta"/>
+        <Property name="text" type="java.lang.String" value="Vamos l&#xe1;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvaPortaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfNome">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="ex: Ronaldo Fenomeno Copa 92"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNomeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="insiraNome">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insira seu nome:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

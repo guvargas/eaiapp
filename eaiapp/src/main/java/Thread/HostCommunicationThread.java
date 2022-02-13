@@ -7,17 +7,26 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import Controller.MainController;
+
 public class HostCommunicationThread extends Thread {
 
     public HostCommunicationThread(Socket conn) {
         this.conexao = conn;
     }
 
+    private void enviaMensagem(String s) throws IOException{
+        bufferEscritor.write(s);
+        bufferEscritor.newLine();
+        bufferEscritor.flush();
+    }
+
     @Override
     public void run() {
         on = true;
         try {
-            System.out.println("Thread de conexao com o servidor iniciada.");
+            System.out.println("Alguem conectou comigo o ip eh: "+ conexao.getInetAddress().getHostAddress());
+
             // leitor pega do que vem
             leitor = new InputStreamReader(conexao.getInputStream());// ,Global.ENCODER_STRING);
             bufferLeitor = new BufferedReader(leitor);
@@ -26,9 +35,8 @@ public class HostCommunicationThread extends Thread {
             escritor = new OutputStreamWriter(conexao.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
 
-            bufferEscritor.write("confirmacao;conectado;" + this.getId());
-            bufferEscritor.newLine();
-            bufferEscritor.flush();
+            enviaMensagem("confirmacao;conectado;" + this.getId());
+            
 
             // while (on) {
             String msgFromClient = new String(bufferLeitor.readLine().getBytes());// , Global.ENCODER_STRING);
@@ -88,5 +96,10 @@ public class HostCommunicationThread extends Thread {
 
     // leitor pra ser mais rapido
     private BufferedWriter bufferEscritor = null;
+    private MainController clienteController= null;
+
+    public void setClienteController(MainController clienteController) {
+        this.clienteController = clienteController;
+    }
 
 }

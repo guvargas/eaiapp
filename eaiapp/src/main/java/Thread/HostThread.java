@@ -5,17 +5,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
+import Controller.MainController;
 import Helper.ServerFactory;
 
 public class HostThread extends Thread {
     private int porta = 8080;
     private ServerFactory fabricaServidores = null;
     public boolean on = false;
-    private HashMap<String, HostCommunicationThread> servidores = new HashMap<String, HostCommunicationThread>();
+    private MainController clienteController=null;
 
-    public HostThread(int porta) {
+    public HostThread(int porta, MainController clienteController) {
         this.porta = porta;
         fabricaServidores = new ServerFactory();
+        this.clienteController = clienteController;
     }
 
     public void desligarHost() {
@@ -34,8 +36,8 @@ public class HostThread extends Thread {
                 System.out.println("Aguardando conexao...");
                 Socket conn = server.accept();
                 HostCommunicationThread servidor = fabricaServidores.criarConexao(conn);
+                servidor.setClienteController(clienteController);
                 servidor.start();
-               // servidores.put(conn.getInetAddress().getHostAddress(), servidor);
             } while (on);
 
             server.close();

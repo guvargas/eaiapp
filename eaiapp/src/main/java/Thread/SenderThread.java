@@ -28,6 +28,29 @@ public class SenderThread extends Thread {
         this.porta = porta;
     }
 
+    private boolean isConnected() throws IOException {
+        String respostaServer = new String(bufferLeitor.readLine().getBytes());//
+        System.out.println(respostaServer);
+        if (respostaServer.split(";")[0].equals("confirmacao")
+                && respostaServer.split(";")[1].equals("conectado")) {
+            System.out.println("Usuario online");
+            return true;
+        } else {
+            System.out.println("Usuario offline");
+            return false;
+        }
+    }
+
+    private void enviarMensagem() throws IOException {
+        String msgToSend = BancoMensagens.filaMensagens.get(0);
+        BancoMensagens.filaMensagens.remove(0);
+        bufferEscritor.write(msgToSend);
+        bufferEscritor.newLine();
+        // pra eficiencia
+        bufferEscritor.flush();
+        // esperando resposta do servidor
+    }
+
     @Override
     public void run() {
 
@@ -36,40 +59,18 @@ public class SenderThread extends Thread {
             socket = new Socket(ip, porta);
 
             // leitor pega do que vem
-
             leitor = new InputStreamReader(socket.getInputStream());// , Global.ENCODER_STRING);
             bufferLeitor = new BufferedReader(leitor);
-            /*
-             * OuvinteThread ouvinte = new OuvinteThread(socket);
-             * ouvinte.start();
-             */
 
             // escritor pega o que vai
             escritor = new OutputStreamWriter(socket.getOutputStream());
             bufferEscritor = new BufferedWriter(escritor);
 
-            // System.out.println("Server: " + new
-            // String(bufferLeitor.readLine().getBytes()));
+            if (isConnected()) {
+                enviarMensagem();
+                lerResposta();
+            }
 
-            // do {
-
-            // if (!BancoMensagens.filaMensagens.isEmpty()) {
-            String msgToSend = BancoMensagens.filaMensagens.get(0);
-            BancoMensagens.filaMensagens.remove(0);
-            bufferEscritor.write(msgToSend);
-            bufferEscritor.newLine();
-            // pra eficiencia
-            bufferEscritor.flush();
-            // esperando resposta do servidor
-
-            String respostaServer = new String(bufferLeitor.readLine().getBytes());//
-            System.out.println("Server: " + respostaServer);
-
-            // } else {
-            // sleep(500);
-            // }
-
-            // } while (true);
             fecharConexoes();
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,6 +78,17 @@ public class SenderThread extends Thread {
             fecharConexoes();
         }
 
+    }
+
+    private void lerResposta() throws IOException {
+        String respostaServer = new String(bufferLeitor.readLine().getBytes());//
+        System.out.println(respostaServer);
+        if (respostaServer.split(";")[0].equals("confirmacao")
+                && respostaServer.split(";")[1].equals("recebido")) {
+            System.out.println("Usuario recebeu mensagem");
+        } else {
+            System.out.println("Usuario nao recebeu mensagem");
+        }
     }
 
     private void fecharConexoes() {

@@ -4,7 +4,7 @@
  */
 package View;
 
-import Controller.ClienteController;
+import Controller.MainController;
 import Model.Conversa;
 
 /**
@@ -14,7 +14,7 @@ import Model.Conversa;
 public class ConversaCliente extends javax.swing.JFrame {
 
 
-    ClienteController controller=null;
+    MainController controller=null;
     /**
      * Creates new form ConversaCliente
      */
@@ -25,7 +25,7 @@ public class ConversaCliente extends javax.swing.JFrame {
         initComponents();
     }
     
-   public ConversaCliente(Conversa c,ClienteController clienteController){
+   public ConversaCliente(Conversa c,MainController clienteController){
         initComponents();
         conversa = c;
         controller=clienteController;

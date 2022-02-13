@@ -4,14 +4,14 @@
  */
 package View;
 
-import Controller.ClienteController;
+import Controller.MainController;
 
 /**
  *
  * @author guand
  */
 public class Login extends javax.swing.JFrame {
-private ClienteController c;
+private MainController c;
     private ConexaoView cv;
     /**
      * Creates new form MainView
@@ -19,7 +19,7 @@ private ClienteController c;
     public Login() {
         initComponents();
     }
-    public Login(ClienteController c) {
+    public Login(MainController c) {
         initComponents();
         this.c = c;
     }
@@ -173,7 +173,7 @@ private ClienteController c;
         if (login.equals("") || senha.equals("")) {
             txtResultado.setText("Preencha os campos!");
         } else {
-            c.realizarLogin(login, senha);
+         //   c.realizarLogin(login, senha);
         }
         
 
