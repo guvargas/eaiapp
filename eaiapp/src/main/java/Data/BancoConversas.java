@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import Model.Conversa;
+import Model.Mensagem;
 
 public class BancoConversas {
     // private List<Conversa> minhasConversas;
@@ -13,7 +14,11 @@ public class BancoConversas {
     public BancoConversas() {
         conversas = new HashMap<String, Conversa>();
     }
-//fazer o get mensagens por aqui pra ver se vai
+    // fazer o get mensagens por aqui pra ver se vai
+    public List<Mensagem> getMensagensDeUmaConversa(Conversa conversa) {
+    //    System.out.println("AQUI AS MENSAGENS OH: "+conversas.get(conversa.getIp() + ";" + conversa.getPorta()).getMensagens().toString());
+        return conversas.get(conversa.getIp() + ";" + conversa.getPorta()).getMensagens();
+    }
     public void addConversa(Conversa conversa) {
         conversas.put(conversa.getIp() + ";" + conversa.getPorta(), conversa);
         // minhasConversas.add(conversa);

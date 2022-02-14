@@ -31,6 +31,7 @@ public class ConversaCliente extends javax.swing.JFrame {
         initComponents();
     }
     
+    
    public ConversaCliente(Conversa c,MainController clienteController){
         initComponents();
         conversa = c;
@@ -166,7 +167,9 @@ public class ConversaCliente extends javax.swing.JFrame {
 
 
         taDisplay.setText("");
-        atualizarMensagens(conversa.getMensagens());
+        atualizarMensagens(controller.getMensagens(conversa));
+
+        //atualizarMensagens(conversa.getMensagens());
 /*
         List<Mensagem> mensagens=null;
         for (Conversa c :  controller.getMinhasConversas()) {

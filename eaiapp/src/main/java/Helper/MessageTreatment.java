@@ -18,13 +18,14 @@ public class MessageTreatment {
     }
 
     public void oraoraUmaMensagemEba(String msg, String ipDeQuemEnviou, MainController cc) {
+        String[] ipRecebido = ipDeQuemEnviou.split(":");
         String[] mensagemCortadinha = msg.split(";");
         if (mensagemCortadinha[0].equals("mensagem")) {
             Boolean jaExiste = false;
             Mensagem m = new Mensagem(mensagemCortadinha[4], mensagemCortadinha[3], mensagemCortadinha[2]);
             for (Conversa c : bc.getMinhasConversas()) {
-                if (c.getIp().equals(ipDeQuemEnviou)) {
-                    // System.out.println("Conversa encontrada");
+                if (c.getIp().equals(ipRecebido[0].split("/")[1]) && c.getPorta() == Integer.parseInt(mensagemCortadinha[1])) {
+                    System.out.println("Conversa foi encontrada");
                     m.setSender(c.getNome());
                     c.addMensagem(m);
                     jaExiste = true;
@@ -32,10 +33,10 @@ public class MessageTreatment {
             }
 
             if (!jaExiste) {
-                String[] s = ipDeQuemEnviou.split(":");
-                System.out.println("Conversa nao encontrada");
-                Conversa c = new Conversa(s[0].split("/")[1], mensagemCortadinha[2],
-                Integer.parseInt(mensagemCortadinha[1]));
+
+                System.out.println("Conversa nao encontrada criando uma nova");
+                Conversa c = new Conversa(ipRecebido[0].split("/")[1], mensagemCortadinha[2],
+                        Integer.parseInt(mensagemCortadinha[1]));
                 c.addMensagem(m);
                 bc.addConversa(c);
             }

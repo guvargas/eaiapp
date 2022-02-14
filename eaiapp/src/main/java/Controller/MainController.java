@@ -25,6 +25,10 @@ public class MainController {
         ht = new HostThread(porta, this);
     }
 
+    public List<Mensagem> getMensagens(Conversa conversa) {
+        return bancoConversa.getMensagensDeUmaConversa(conversa);
+    }
+
     public void adicionarConversa(String ip, String nome, int porta) {
         bancoConversa.addConversa(new Conversa(ip, nome, porta));
     }

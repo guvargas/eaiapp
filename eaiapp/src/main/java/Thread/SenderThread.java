@@ -32,7 +32,7 @@ public class SenderThread extends Thread {
 
     private boolean isConnected() throws IOException {
         String respostaServer = new String(bufferLeitor.readLine().getBytes());//
-        System.out.println(respostaServer);
+       // System.out.println(respostaServer);
         if (respostaServer.split(";")[0].equals("confirmacao")
                 && respostaServer.split(";")[1].equals("conectado")) {
           //  System.out.println("Usuario online");
