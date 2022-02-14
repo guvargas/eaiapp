@@ -6,6 +6,8 @@ package View;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Controller.MainController;
 import Data.BancoConversas;
 import Model.Conversa;
@@ -133,11 +135,20 @@ public class ConversaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEnviarMensagemActionPerformed
-    String mensagem = "";
-    mensagem = tfMensagem.getText();
-    controller.enviarMensagem(mensagem,conversa);
-    refrescar();
-    tfMensagem.setText("");
+   
+
+        if(tfMensagem.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite uma mensagem");
+
+        }else{
+
+            String mensagem = "";
+            mensagem = tfMensagem.getText();
+            controller.enviarMensagem(mensagem,conversa);
+            refrescar();
+            tfMensagem.setText("");
+        }
+   
 
     }//GEN-LAST:event_btEnviarMensagemActionPerformed
 
@@ -152,22 +163,26 @@ public class ConversaCliente extends javax.swing.JFrame {
     }
 
     public void refrescar(){
-        taDisplay.setText("");
 
+
+        taDisplay.setText("");
+        atualizarMensagens(conversa.getMensagens());
+/*
         List<Mensagem> mensagens=null;
-        for (Conversa c : BancoConversas.minhasConversas) {
+        for (Conversa c :  controller.getMinhasConversas()) {
             if(c.getNome().equals(conversa.getNome())){
                mensagens = c.getMensagens();
             }
         }
         if(mensagens!= null){
             atualizarMensagens(mensagens);
-        }
+        }*/
     }
 
     private void atualizarMensagens(List<Mensagem> mensagens){
         for (Mensagem m : mensagens) {
-            atualizarDisplay(m.getConteudo()+ "\n Enviada às "+m.getHorario());
+        //    System.out.println("Mensagem: "+m.getSender()+": "+m.getConteudo()+ "\n Enviada às "+m.getHorario());
+            atualizarDisplay(m.getSender()+": "+m.getConteudo()+ "\n Enviada às "+m.getHorario());
         }
     }
     /**

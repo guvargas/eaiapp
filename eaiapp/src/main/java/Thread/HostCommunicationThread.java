@@ -40,14 +40,9 @@ public class HostCommunicationThread extends Thread {
 
             enviaMensagem("confirmacao;conectado;");
             // pega o ip
-            InetSocketAddress sockaddr = (InetSocketAddress) conexao.getRemoteSocketAddress();
-            InetAddress inaddr = sockaddr.getAddress();
-            Inet4Address in4addr = (Inet4Address) inaddr;
-            String ip4string = in4addr.toString();
-            System.out.println("IP: " + ip4string + " ip2: " + conexao.getRemoteSocketAddress());
-            clienteController.messageReceived(new String(bufferLeitor.readLine().getBytes()), conexao.getRemoteSocketAddress().toString());
+            clienteController.messageReceived(new String(bufferLeitor.readLine().getBytes()),
+                    conexao.getRemoteSocketAddress().toString());
             enviaMensagem("confirmacao;recebido;");
-            
 
             fecharConexoes();
         } catch (IOException e) {
@@ -65,8 +60,7 @@ public class HostCommunicationThread extends Thread {
 
     private void fecharConexoes() {
         try {
-            System.out.println("Fechando conexoes...");
-            if (bufferEscritor != null) {
+                    if (bufferEscritor != null) {
                 bufferEscritor.close();
             }
             if (bufferLeitor != null) {

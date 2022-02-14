@@ -1,7 +1,8 @@
 package Controller;
 
+import java.util.List;
+
 import Data.BancoConversas;
-import Data.BancoMensagens;
 import Helper.MessageTreatment;
 import Model.Conversa;
 import Model.Mensagem;
@@ -16,9 +17,8 @@ public class MainController {
 
     // login
     public MainController() {
-        mt = new MessageTreatment();
-        banco = new BancoMensagens();
         bancoConversa = new BancoConversas();
+        mt = new MessageTreatment(bancoConversa);
     }
 
     public void definirPorta(int porta) {
@@ -27,6 +27,11 @@ public class MainController {
 
     public void adicionarConversa(String ip, String nome, int porta) {
         bancoConversa.addConversa(new Conversa(ip, nome, porta));
+    }
+    
+    public void abrirConversa(Conversa c) {
+        ConversaCliente cc = new ConversaCliente(c, this);
+        cc.setVisible(true);
     }
 
     public void messageReceived(String msg, String ip) {
@@ -55,12 +60,16 @@ public class MainController {
         cv.setVisible(true);
     }
 
+    public List<Conversa> getMinhasConversas() {
+        return bancoConversa.getMinhasConversas();
+    }
+  
+
     // enviar mensagem
     public void enviarMensagem(String mensagem, Conversa contato) {
-        Mensagem m = new Mensagem(mensagem, java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")));
+        Mensagem m = new Mensagem(mensagem, java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")), usuario.getNome());
         contato.addMensagem(m);
         sendToClient(contato, mt.obaobaQueroMandarPraALguem(mensagem, usuario, contato));
-
     }
 
     private void sendToClient(Conversa c, String msg) {
@@ -86,10 +95,10 @@ public class MainController {
 
     private ConversaCliente conversaAtual = null;
     private PrincipalView viewPrincipal =null;
-    private BancoMensagens banco = null;
     private BancoConversas bancoConversa = null;
     private Pessoa usuario = null;
     private HostThread ht = null;
     private MessageTreatment mt = null;
+
     
 }

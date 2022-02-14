@@ -8,7 +8,6 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-import Data.BancoMensagens;
 import Helper.Global;
 import Model.Conversa;
 
@@ -36,7 +35,7 @@ public class SenderThread extends Thread {
         System.out.println(respostaServer);
         if (respostaServer.split(";")[0].equals("confirmacao")
                 && respostaServer.split(";")[1].equals("conectado")) {
-            System.out.println("Usuario online");
+          //  System.out.println("Usuario online");
             return true;
         } else {
             System.out.println("Usuario offline");
@@ -89,9 +88,9 @@ public class SenderThread extends Thread {
         System.out.println(respostaServer);
         if (respostaServer.split(";")[0].equals("confirmacao")
                 && respostaServer.split(";")[1].equals("recebido")) {
-            System.out.println("Usuario recebeu mensagem");
+      //     System.out.println("Usuario recebeu mensagem");
         } else {
-            System.out.println("Usuario nao recebeu mensagem");
+       //     System.out.println("Usuario nao recebeu mensagem");
         }
     }
 

@@ -21,7 +21,7 @@ public class JTableLista extends AbstractTableModel {
     private String[] columNome = { "Nome", "Ultima Mensagem", "Porta" };
 
     public JTableLista() {
-        conversa = BancoConversas.minhasConversas;
+       // conversa = BancoConversas.minhasConversas;
     }
 
     @Override
@@ -53,13 +53,11 @@ public class JTableLista extends AbstractTableModel {
     }
 
     public void refresh() {
-
         this.fireTableDataChanged();
     }
 
     public void addConversa(Conversa c) {
         this.conversa.add(c);
-
         this.fireTableDataChanged();
     }
 
@@ -71,9 +69,9 @@ public class JTableLista extends AbstractTableModel {
         this.fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
-    public void abrirConversa(int rowIndex, MainController cliente) {
+    public void abrirConversa(int rowIndex, MainController controller) {
         Conversa c = this.conversa.get(rowIndex);
-        ConversaCliente cc = new ConversaCliente(c,cliente);
+        ConversaCliente cc = new ConversaCliente(c,controller);
         cc.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         cc.setVisible(true);
     }
