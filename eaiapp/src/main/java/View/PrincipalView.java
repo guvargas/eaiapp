@@ -23,7 +23,7 @@ public class PrincipalView extends javax.swing.JFrame {
     JListHelper tb;
     int porta;
     private MainController controller = null;
-    
+    JTableLista tbLista;
     public PrincipalView() {
         initComponents();
     }
@@ -32,7 +32,9 @@ public class PrincipalView extends javax.swing.JFrame {
     public PrincipalView(int porta, MainController cc) {
         initComponents();
         tb =  new JListHelper(); 
-        JLISTlistaConversas.setModel(tb);
+        tbLista= new JTableLista(cc);
+        Jtable.setModel(tbLista);
+       // JLISTlistaConversas.setModel(tb);
         this.porta = porta;
         controller = cc;
         controller.definirPorta(porta);
@@ -58,8 +60,8 @@ public class PrincipalView extends javax.swing.JFrame {
         tfNome = new javax.swing.JTextField();
         btEntrarConversa = new javax.swing.JButton();
         btDelete = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        JLISTlistaConversas = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Jtable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,13 +98,18 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        JLISTlistaConversas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        JLISTlistaConversas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(JLISTlistaConversas);
+        Jtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(Jtable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,9 +117,9 @@ public class PrincipalView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfIP, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,15 +136,14 @@ public class PrincipalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btEntrarConversa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btDelete)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btDelete)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAddConversa)
@@ -161,7 +167,7 @@ public class PrincipalView extends javax.swing.JFrame {
             //ip nome e porta
             controller.adicionarConversa(tfIP.getText(),tfNome.getText(),Integer.parseInt(tfPorta.getText()));
 
-            //tb.addConversa(c);
+           // tbLista.addConversa(c);
            refrescar();
         }
     }//GEN-LAST:event_btAddConversaActionPerformed
@@ -171,31 +177,33 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPortaActionPerformed
 
     public void refrescar(){
-        //tb.refresh();
+        tbLista.refresh();
+
+        /*
         tb.removeAllElements();
 
         for(Conversa c : controller.getMinhasConversas()){
             tb.addElement(c);
-        }
+        }*/
     }
 
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-       System.out.print(JLISTlistaConversas.getSelectedValue());
+     //  System.out.print(JLISTlistaConversas.getSelectedValue());
 
-        /*if(tbConversas.getSelectedRow() != -1){
-            tb.removerConversa(tbConversas.getSelectedRow());
-        }*/
+        if(Jtable.getSelectedRow() != -1){
+            tbLista.removerConversa(Jtable.getSelectedRow());
+        }
 
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btEntrarConversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarConversaActionPerformed
         
-        controller.abrirConversa(tb.getConversa(JLISTlistaConversas.getSelectedValue()));
+       // controller.abrirConversa(tb.getConversa(JLISTlistaConversas.getSelectedValue()));
 
-        /* if(tbConversas.getSelectedRow() != -1){
-            tb.abrirConversa(tbConversas.getSelectedRow(),cliente);
-        }*/
+         if(Jtable.getSelectedRow() != -1){
+            tbLista.abrirConversa(Jtable.getSelectedRow(),controller);
+        }
 
     }//GEN-LAST:event_btEntrarConversaActionPerformed
 
@@ -235,14 +243,14 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> JLISTlistaConversas;
+    private javax.swing.JTable Jtable;
     private javax.swing.JButton btAddConversa;
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btEntrarConversa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfIP;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfPorta;

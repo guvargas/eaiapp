@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 import Helper.Global;
 import Model.Conversa;
@@ -32,10 +35,10 @@ public class SenderThread extends Thread {
 
     private boolean isConnected() throws IOException {
         String respostaServer = new String(bufferLeitor.readLine().getBytes());//
-       // System.out.println(respostaServer);
+        // System.out.println(respostaServer);
         if (respostaServer.split(";")[0].equals("confirmacao")
                 && respostaServer.split(";")[1].equals("conectado")) {
-          //  System.out.println("Usuario online");
+            // System.out.println("Usuario online");
             return true;
         } else {
             System.out.println("Usuario offline");
@@ -44,8 +47,8 @@ public class SenderThread extends Thread {
     }
 
     private void enviarMensagem() throws IOException {
-      //  String msg = BancoMensagens.filaMensagens.get(0);
-       // BancoMensagens.filaMensagens.remove(0);
+        // String msg = BancoMensagens.filaMensagens.get(0);
+        // BancoMensagens.filaMensagens.remove(0);
 
         bufferEscritor.write(msg);
         bufferEscritor.newLine();
@@ -58,25 +61,33 @@ public class SenderThread extends Thread {
     public void run() {
 
         try {
-            // abro o socket
-            socket = new Socket(ip, porta);
+          
+         
+                // abro o socket
+                socket = new Socket(ip, porta);
+                
+                // leitor pega do que vem
+                leitor = new InputStreamReader(socket.getInputStream());// , Global.ENCODER_STRING);
+                bufferLeitor = new BufferedReader(leitor);
 
-            // leitor pega do que vem
-            leitor = new InputStreamReader(socket.getInputStream());// , Global.ENCODER_STRING);
-            bufferLeitor = new BufferedReader(leitor);
+                // escritor pega o que vai
+                escritor = new OutputStreamWriter(socket.getOutputStream());
+                bufferEscritor = new BufferedWriter(escritor);
 
-            // escritor pega o que vai
-            escritor = new OutputStreamWriter(socket.getOutputStream());
-            bufferEscritor = new BufferedWriter(escritor);
+                if (isConnected()) {
+                    enviarMensagem();
+                    lerResposta();
+                }
+             
+         
+           
 
-            if (isConnected()) {
-                enviarMensagem();
-                lerResposta();
-            }
 
-            fecharConexoes();
+          
         } catch (IOException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+            "Problema ao conectar ao ip: " + ip + " e a porta: " + porta +"\n"+ e.getMessage());
+          //  e.printStackTrace();
         } finally {
             fecharConexoes();
         }
@@ -88,14 +99,15 @@ public class SenderThread extends Thread {
         System.out.println(respostaServer);
         if (respostaServer.split(";")[0].equals("confirmacao")
                 && respostaServer.split(";")[1].equals("recebido")) {
-      //     System.out.println("Usuario recebeu mensagem");
+            // System.out.println("Usuario recebeu mensagem");
         } else {
-       //     System.out.println("Usuario nao recebeu mensagem");
+            // System.out.println("Usuario nao recebeu mensagem");
         }
     }
 
     private void fecharConexoes() {
         try {
+            System.out.println("Fechou Conexoes");
             if (bufferEscritor != null) {
                 bufferEscritor.close();
             }

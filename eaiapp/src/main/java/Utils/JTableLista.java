@@ -19,9 +19,12 @@ import Data.BancoConversas;
 public class JTableLista extends AbstractTableModel {
     private List<Conversa> conversa ;
     private String[] columNome = { "Nome", "Ultima Mensagem", "Porta" };
+    private MainController mc;
 
-    public JTableLista() {
-       // conversa = BancoConversas.minhasConversas;
+    public JTableLista(MainController mc) {
+      this.mc = mc;
+
+         conversa = mc.getMinhasConversas();
     }
 
     @Override
@@ -53,6 +56,7 @@ public class JTableLista extends AbstractTableModel {
     }
 
     public void refresh() {
+        conversa = mc.getMinhasConversas();
         this.fireTableDataChanged();
     }
 

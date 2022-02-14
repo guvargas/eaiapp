@@ -1,6 +1,9 @@
-Entao
-ta tendo alguns bugs
+Dúvidas
 
-- conversa cliente a zera quando cliente a manda mensagem
-- é criado varios cliente A quando manda varias mensagem na tela principal
-- se cliente A inicia conversa com cliente B, cliente B manda mensagem pra Cliente A e como o nome é diferente a conversa duplica (botar o ip)
+- Não tem problema se dois mandar ao mesmo tempo
+- 
+
+Da pra fazer
+
+- Ficar online//offiline
+- Avisar que não chegou
