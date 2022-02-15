@@ -67,5 +67,6 @@ Diagrama de classes com packages:
 ![diagrama de classes com packages](https://user-images.githubusercontent.com/51674297/154133312-cf1af74f-cc0f-4e74-bbe1-dded1452e0a8.png)
 
 
+## ⚠️ Tratamento de erros
 
-
+Quando uma mensagem é enviada para uma pessoa que não está disponível o sistema avisa por meio de uma caixa de diálogo que a mensagem não pôde ser entregue.
