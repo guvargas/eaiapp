@@ -6,9 +6,6 @@
 package View;
 
 import Controller.MainController;
-import Data.BancoConversas;
-import Model.Conversa;
-import Utils.JListHelper;
 import Utils.JTableLista;
 
 /**
@@ -20,7 +17,6 @@ public class PrincipalView extends javax.swing.JFrame {
     /**
      * Creates new form PrincipalView
      */
-    JListHelper tb;
     int porta;
     private MainController controller = null;
     JTableLista tbLista;
@@ -31,7 +27,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
     public PrincipalView(int porta, MainController cc) {
         initComponents();
-        tb =  new JListHelper(); 
         tbLista= new JTableLista(cc);
         Jtable.setModel(tbLista);
        // JLISTlistaConversas.setModel(tb);
@@ -91,7 +86,7 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        btDelete.setText("Deletar conversa");
+        btDelete.setText("Arquivar conversa");
         btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btDeleteActionPerformed(evt);

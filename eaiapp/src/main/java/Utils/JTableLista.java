@@ -7,24 +7,21 @@ package Utils;
 
 import Model.Conversa;
 import View.ConversaCliente;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.WindowConstants;
 import javax.swing.table.AbstractTableModel;
 
 import Controller.MainController;
-import Data.BancoConversas;
 
 public class JTableLista extends AbstractTableModel {
-    private List<Conversa> conversa ;
+    private List<Conversa> listaConversasExibidas ;
     private String[] columNome = { "Nome", "Ultima Mensagem", "Porta" };
     private MainController mc;
 
     public JTableLista(MainController mc) {
       this.mc = mc;
 
-         conversa = mc.getMinhasConversas();
+         listaConversasExibidas = mc.getMinhasConversas();
     }
 
     @Override
@@ -34,7 +31,7 @@ public class JTableLista extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return conversa.size();
+        return listaConversasExibidas.size();
     }
 
     @Override
@@ -46,22 +43,22 @@ public class JTableLista extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return conversa.get(rowIndex).getNome();
+                return listaConversasExibidas.get(rowIndex).getNome();
             case 1:
-                return conversa.get(rowIndex).getUltimaMensagem().getConteudo();
+                return listaConversasExibidas.get(rowIndex).getUltimaMensagem().getConteudo();
             case 2:
-                return conversa.get(rowIndex).getPorta();
+                return listaConversasExibidas.get(rowIndex).getPorta();
         }
         return null;
     }
 
     public void refresh() {
-        conversa = mc.getMinhasConversas();
+        listaConversasExibidas = mc.getMinhasConversas();
         this.fireTableDataChanged();
     }
 
     public void addConversa(Conversa c) {
-        this.conversa.add(c);
+        this.listaConversasExibidas.add(c);
         this.fireTableDataChanged();
     }
 
@@ -69,12 +66,12 @@ public class JTableLista extends AbstractTableModel {
     // ai ele da um refresh na tabela
 
     public void removerConversa(int rowIndex) {
-        this.conversa.remove(rowIndex);
+        this.listaConversasExibidas.remove(rowIndex);
         this.fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
     public void abrirConversa(int rowIndex, MainController controller) {
-        Conversa c = this.conversa.get(rowIndex);
+        Conversa c = this.listaConversasExibidas.get(rowIndex);
         ConversaCliente cc = new ConversaCliente(c,controller);
         cc.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         cc.setVisible(true);

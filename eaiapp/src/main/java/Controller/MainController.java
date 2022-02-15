@@ -54,10 +54,10 @@ public class MainController {
     public void ficarOnline() {
         ht.start();
     }
-
+/*
     public void ficarOffline() {
         ht.desligarHost();
-    }
+    }*/
 
     public void abrirTela() {
         ConexaoView cv = new ConexaoView(this);
@@ -68,7 +68,6 @@ public class MainController {
         return bancoConversa.getMinhasConversas();
     }
   
-
     // enviar mensagem
     public void enviarMensagem(String mensagem, Conversa contato) {
         Mensagem m = new Mensagem(mensagem, java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")), usuario.getNome());

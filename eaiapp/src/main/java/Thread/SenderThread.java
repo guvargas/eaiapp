@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import Helper.Global;
 import Model.Conversa;
 
 public class SenderThread extends Thread {
@@ -140,6 +139,6 @@ public class SenderThread extends Thread {
     // leitor pra ser mais rapido
     private BufferedWriter bufferEscritor = null;
     private String msg;
-    private String ip = Global.IP_CONEXAO;
-    private int porta = Global.PORTA_CONEXAO;
+    private String ip = "";
+    private int porta = 8000;
 }

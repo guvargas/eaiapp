@@ -9,7 +9,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import Controller.MainController;
-import Data.BancoConversas;
 import Model.Conversa;
 import Model.Mensagem;
 
@@ -185,7 +184,7 @@ public class ConversaCliente extends javax.swing.JFrame {
     private void atualizarMensagens(List<Mensagem> mensagens){
         for (Mensagem m : mensagens) {
         //    System.out.println("Mensagem: "+m.getSender()+": "+m.getConteudo()+ "\n Enviada às "+m.getHorario());
-            atualizarDisplay(m.getSender()+": "+m.getConteudo()+ "\n Enviada às "+m.getHorario());
+            atualizarDisplay(m.getSender()+": "+m.getConteudo()+ "\nEnviada às "+m.getHorario());
         }
     }
     /**
