@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 import Controller.MainController;
 import Utils.JTableLista;
 
@@ -164,6 +166,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
            // tbLista.addConversa(c);
            refrescar();
+        }else{
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente");
         }
     }//GEN-LAST:event_btAddConversaActionPerformed
 
@@ -188,6 +192,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         if(Jtable.getSelectedRow() != -1){
             tbLista.removerConversa(Jtable.getSelectedRow(), controller);
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma conversa para deletar");
         }
 
     }//GEN-LAST:event_btDeleteActionPerformed
@@ -198,6 +204,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
          if(Jtable.getSelectedRow() != -1){
             tbLista.abrirConversa(Jtable.getSelectedRow(),controller);
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma conversa para entrar");
         }
 
     }//GEN-LAST:event_btEntrarConversaActionPerformed
