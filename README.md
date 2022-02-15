@@ -10,6 +10,7 @@ Gustavo Vargas de Andrade e Lucas Waterkemper Alberton.
 - RF1. O sistema deverá permitir manter Pessoas
 - RF2. O sistema deverá permitir manter Conversas
 - RF3. O sistema deverá permitir que uma pessoa tenha conversas com mais de 1 pessoa
+- RF4. O sistema deve permitir ao usuário ver a última mensagem enviada ou recebida sem abrir o chat
 - RF5. O sistema deve permitir a exclusão de mensagens
  
 ## 🔐 Requisitos Não Funcionais
