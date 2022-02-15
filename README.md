@@ -1,6 +1,8 @@
 # ☕ Eaiapp
 O sistema tem a premissa de ser uma aplicação simples para a comunicação entre computadores permitindo que mensagens sejam enviadas entre diferentes computadores utilizando Sockets e Threads.
 
+O funcionamento é simples: Um usuário define qual a porta será aberta em seu computador e seu nome, após isso poderá criar conversas com outros usuários adicionando-os apenas uma vez usando o IP, Porta e Nome dos mesmos, sendo que o nome escolhido não necessariamente precisa ser o mesmo cadastrado pelo outro usuário. Uma conversa é gerada e pode ser utilizada para comunicação entre usuários. 
+
 ## 👷 Equipe
 Gustavo Vargas de Andrade e Lucas Waterkemper Alberton.
 
