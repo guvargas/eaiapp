@@ -1,10 +1,36 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>430</x><y>584</y><w>210</w><h>100</h></coordinates><panel_attributes>Conversa
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>Space for diagram notes</help_text>
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>645</x>
+      <y>445</y>
+      <w>105</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Conversa
 --
+-ip:String
 -nome:String
--criador:String
+-porta:int
+-mensagens: List&lt;Mensagem&gt;
 --
 +Conversa()
-+gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>584</y><w>210</w><h>140</h></coordinates><panel_attributes>Mensagem
++getUltimaMensagem()
++gets e sets</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>650</x>
+      <y>565</y>
+      <w>105</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Mensagem
 --
 -conteudo:String
 -horario: String
@@ -12,75 +38,460 @@
 -ouvinte: String
 --
 +Mensagem()
-+gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>633</x><y>560</y><w>190</w><h>50</h></coordinates><panel_attributes>lt=-
++gets e sets</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>695</x>
+      <y>515</y>
+      <w>45</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..n
-contém &gt;</panel_attributes><additional_attributes>10;24;170;24</additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>390</y><w>210</w><h>120</h></coordinates><panel_attributes>Pessoa
+contém &gt;</panel_attributes>
+    <additional_attributes>10.0;14.0;10.0;104.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>645</x>
+      <y>350</y>
+      <w>105</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Pessoa
 --
 -ip: String
 -login: String
 -senha: String
 --
 +Pessoa()
-+gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>280</y><w>210</w><h>120</h></coordinates><panel_attributes>ThreadServidor
++gets e sets</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>715</x>
+      <y>250</y>
+      <w>105</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>ThreadServidor
 --
 -ip: String
 -porta:int
 --
 -ThreadServidor(ip:String,porta:int)
 -iniciar():boolean
--desligar():boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>500</y><w>80</w><h>100</h></coordinates><panel_attributes>lt=-
+-desligar():boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>405</y>
+      <w>45</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..n
-contém &gt;</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>390</y><w>80</w><h>210</h></coordinates><panel_attributes>lt=-
-m1=0..1
-m2=0..n
-recebe &gt;</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>160</y><w>190</w><h>240</h></coordinates><panel_attributes>lt=-
-m1=0..1
-m2=0..n
-comunica &gt;</panel_attributes><additional_attributes>10;10;60;10;60;210;170;210</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>670</y><w>750</w><h>100</h></coordinates><panel_attributes>lt=-
+contém &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>485</y>
+      <w>85</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..n
 m2=0..1
-são guardadas &gt;</panel_attributes><additional_attributes>10;10;10;80;710;80;710;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1140</x><y>590</y><w>210</w><h>90</h></coordinates><panel_attributes>Banco
+guarda informações &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>850</x>
+      <y>570</y>
+      <w>170</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>BancoConversas
 --
--criacao: String
+-conversas: ConcurrentHashMap&lt;String, Conversa&gt;
 --
 +Banco()
-+gets e sets</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>350</y><w>300</w><h>260</h></coordinates><panel_attributes>lt=-
++addConversa(C:Conversa)
++excluiConversa(C:Conversa)
++gets e sets</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>765</x>
+      <y>305</y>
+      <w>280</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..1
-comunica &gt;</panel_attributes><additional_attributes>10;20;260;20;260;240</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1050</x><y>50</y><w>330</w><h>80</h></coordinates><panel_attributes>ControllerAutenticacao
---
--
---
-+ControllerAutenticacao()
-+Autenticar(login: String, senha: String): Boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1280</x><y>120</y><w>100</w><h>490</h></coordinates><panel_attributes>lt=-
-m1=0..1
-m2=0..1
-comunica &gt;</panel_attributes><additional_attributes>10;10;10;470</additional_attributes></element><element><id>Relation</id><coordinates><x>870</x><y>120</y><w>360</w><h>180</h></coordinates><panel_attributes>lt=-
-m1=0..1
-m2=0..1
-valida &gt;</panel_attributes><additional_attributes>320;10;320;110;10;110;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>440</y><w>960</w><h>340</h></coordinates><panel_attributes>lt=-
-m1=0..n
-m2=0..1
-são guardadas &gt;</panel_attributes><additional_attributes>80;10;10;10;10;320;920;320;920;240</additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>0</y><w>330</w><h>70</h></coordinates><panel_attributes>FabricaConexão
---
---
-+gerarThreadCliente(ip:String,porta:int):void
-+gerarThreadServidor(ip:String,porta:int):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>110</y><w>210</w><h>120</h></coordinates><panel_attributes>ThreadCliente
+comunica &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;520.0;50.0;520.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>200</y>
+      <w>105</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>SenderThread
 --
 -ip: String
 -porta:int
 --
 -ThreadCliente(ip:String,porta:int)
--iniciar():boolean
--desligar():boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>60</y><w>140</w><h>240</h></coordinates><panel_attributes>lt=-
+-enviaMensagem():void
+-isConnected():boolean
+-leRespostas():void
+-fecharConexoes():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>935</x>
+      <y>260</y>
+      <w>165</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>FabricaConexão
+--
+--
++gerarThreadServidor(porta:int):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>985</x>
+      <y>350</y>
+      <w>105</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+-porta:int
+--
++iniciarServidor():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>715</x>
+      <y>150</y>
+      <w>105</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>HostThread
+--
+-porta:int
+--
+-ThreadServidor(porta:int)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>815</x>
+      <y>270</y>
+      <w>130</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..n
-gera &gt;</panel_attributes><additional_attributes>10;10;10;80;100;80;100;220</additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>60</y><w>120</w><h>100</h></coordinates><panel_attributes>lt=-
+gera &gt;</panel_attributes>
+    <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>90</y>
+      <w>115</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;210.0;20.0;210.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>615</x>
+      <y>95</y>
+      <w>50</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Thread</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>635</x>
+      <y>105</y>
+      <w>140</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0;260.0;290.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>105</y>
+      <w>80</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>140.0;10.0;140.0;140.0;10.0;140.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>815</x>
+      <y>165</y>
+      <w>190</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..n
-gera &gt;</panel_attributes><additional_attributes>60;10;60;70;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>30</y><w>220</w><h>380</h></coordinates><panel_attributes>lt=-
+gera &gt;</panel_attributes>
+    <additional_attributes>320.0;190.0;320.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>230</y>
+      <w>95</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
 m1=0..1
 m2=0..n
-usa &gt;</panel_attributes><additional_attributes>200;10;10;10;10;250;170;250;170;360</additional_attributes></element></diagram>
+comunica &gt;</panel_attributes>
+    <additional_attributes>170.0;90.0;80.0;90.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>75</y>
+      <w>255</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..n
+comunica &gt;</panel_attributes>
+    <additional_attributes>470.0;150.0;470.0;20.0;10.0;20.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>875</x>
+      <y>450</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>MessageTreatment
+--
+--
++mensagemRecebida(msg:String,ip:String):void
++enviarMensagem(msg:String):String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>745</x>
+      <y>475</y>
+      <w>140</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..1
+gera &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;260.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>745</x>
+      <y>380</y>
+      <w>140</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..1
+lê &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;40.0;160.0;260.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>485</y>
+      <w>145</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..1
+gera &gt;</panel_attributes>
+    <additional_attributes>10.0;220.0;140.0;220.0;140.0;70.0;250.0;70.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1015</x>
+      <y>385</y>
+      <w>75</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..1
+controla &gt;</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;460.0;10.0;460.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1040</x>
+      <y>385</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..1
+controla &gt;</panel_attributes>
+    <additional_attributes>20.0;10.0;20.0;170.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1010</x>
+      <y>385</y>
+      <w>80</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..1
+controla &gt;</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;610.0;10.0;610.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>965</x>
+      <y>680</y>
+      <w>50</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Telas</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>495</x>
+      <y>60</y>
+      <w>360</w>
+      <h>265</h>
+    </coordinates>
+    <panel_attributes>Threads
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>865</x>
+      <y>185</y>
+      <w>270</w>
+      <h>325</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>545</x>
+      <y>325</y>
+      <w>260</w>
+      <h>345</h>
+    </coordinates>
+    <panel_attributes>Model
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>845</x>
+      <y>555</y>
+      <w>190</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>Data
+--
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>940</x>
+      <y>655</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>View
+--
+bg=black
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

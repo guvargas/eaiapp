@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.HashMap;
 
 import Controller.MainController;
-import Helper.ServerFactory;
+import Controller.ServerFactory;
 
 public class HostThread extends Thread {
     private int porta = 8080;

@@ -3,7 +3,6 @@ package Controller;
 import java.util.List;
 
 import Data.BancoConversas;
-import Helper.MessageTreatment;
 import Model.Conversa;
 import Model.Mensagem;
 import Model.Pessoa;
@@ -71,7 +70,7 @@ public class MainController {
     // parte de sockets
 
     public void messageReceived(String msg, String ip) {
-        mt.oraoraUmaMensagemEba(msg, ip, this);
+        mt.mensagemRecebida(msg, ip, this);
     }
 
     public void iniciarConexao() {
@@ -94,7 +93,7 @@ public class MainController {
                 java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")),
                 usuario.getNome());
         contato.addMensagem(m);
-        sendToClient(contato, mt.obaobaQueroMandarPraALguem(mensagem, usuario, contato));
+        sendToClient(contato, mt.enviarMensagem(mensagem, usuario, contato));
     }
 
     private void sendToClient(Conversa c, String msg) {

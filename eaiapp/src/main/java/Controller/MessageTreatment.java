@@ -1,6 +1,5 @@
-package Helper;
+package Controller;
 
-import Controller.MainController;
 import Data.BancoConversas;
 import Model.Conversa;
 import Model.Mensagem;
@@ -17,7 +16,7 @@ public class MessageTreatment {
 
     }
 
-    public void oraoraUmaMensagemEba(String msg, String ipDeQuemEnviou, MainController cc) {
+    public void mensagemRecebida(String msg, String ipDeQuemEnviou, MainController cc) {
         String[] ipRecebido = ipDeQuemEnviou.split(":");
         String[] mensagemCortadinha = msg.split(";");
         if (mensagemCortadinha[0].equals("mensagem")) {
@@ -44,7 +43,7 @@ public class MessageTreatment {
         cc.refrescar();
     }
 
-    public String obaobaQueroMandarPraALguem(String msg, Pessoa p, Conversa c) {
+    public String enviarMensagem(String msg, Pessoa p, Conversa c) {
 
         // BancoMensagens.filaMensagens.add("mensagem;" + nome + ";"+
         // java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))
