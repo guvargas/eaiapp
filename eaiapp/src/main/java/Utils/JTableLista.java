@@ -65,7 +65,8 @@ public class JTableLista extends AbstractTableModel {
     // talvez aqui tenha que ter um atualizar a tabela
     // ai ele da um refresh na tabela
 
-    public void removerConversa(int rowIndex) {
+    public void removerConversa(int rowIndex,MainController controller) {
+        controller.removeConversa(this.listaConversasExibidas.get(rowIndex));
         this.listaConversasExibidas.remove(rowIndex);
         this.fireTableRowsDeleted(rowIndex, rowIndex);
     }

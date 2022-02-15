@@ -86,7 +86,7 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        btDelete.setText("Arquivar conversa");
+        btDelete.setText("Deletar conversa");
         btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btDeleteActionPerformed(evt);
@@ -187,7 +187,7 @@ public class PrincipalView extends javax.swing.JFrame {
      //  System.out.print(JLISTlistaConversas.getSelectedValue());
 
         if(Jtable.getSelectedRow() != -1){
-            tbLista.removerConversa(Jtable.getSelectedRow());
+            tbLista.removerConversa(Jtable.getSelectedRow(), controller);
         }
 
     }//GEN-LAST:event_btDeleteActionPerformed
