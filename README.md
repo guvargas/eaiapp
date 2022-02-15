@@ -8,20 +8,17 @@ Gustavo Vargas de Andrade e Lucas Waterkemper Alberton.
 - RF1. O sistema deverá permitir manter Pessoas
 - RF2. O sistema deverá permitir manter Conversas
 - RF3. O sistema deverá permitir que uma pessoa tenha conversas com mais de 1 pessoa
-- RF4. O sistema deverá ter um sistema de cadastro e login
-
+- RF5. O sistema deve permitir a exclusão de mensagens
+ 
 # Requisitos Não Funcionais
 - RNF1. Deve ser distribuído e executado simultaneamente em no mínimo 3 clientes (hosts) diferentes.
-- RNF2. Deve ser implementado utilizando um servidor central que se comunicará com os clientes
-- RNF3. A comunicação será realizada através de sockets
-- RNF4. Os dados enviados entre cliente/servidor estarão no formato String utilizando separadores de ponto e vírgula (“;”) entre as mensagens
-- RNF5. A aplicação cliente deve ter interface gráfica
-- RNF6. O sistema deve utilizar Threads
+- RNF2. A comunicação será realizada através de sockets
+- RNF3. Os dados enviados entre cliente/cliente estarão no formato String utilizando separadores de ponto e vírgula (“;”) entre as mensagens
+- RNF4. A aplicação cliente deve ter interface gráfica
+- RNF5. O sistema deve utilizar Threads
 
 # Regras de Negócio
-- RN1. O sistema não deve permitir a exclusão de mensagens
-- RN2. Uma pessoa não poderá mudar suas informações de cadastro
-- RN3. O login deve ser único
+- RN1. Uma pessoa não poderá mudar suas informações de cadastro
 
 # Mensagens trocadas 
 
