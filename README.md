@@ -24,7 +24,7 @@ Gustavo Vargas de Andrade e Lucas Waterkemper Alberton.
 
 `Todas as mensagens serão dividadas com ponto e vírgula (";")`
 
-### Conexão e envio de mensagem
+#### Conexão e envio de mensagem
 
 ![Conexão e mensagem](https://user-images.githubusercontent.com/51674297/154132120-6b4191d7-b16a-4a42-95f8-1b2da8011c1c.png)
 
@@ -38,7 +38,7 @@ Construção da resposta:
 <{Tipo da mensagem; Indicativo de conexão}>
 ```
 
-### Envio de mensagem entre clientes
+#### Envio de mensagem entre clientes
 
 ![Mensagem entre clientes](https://user-images.githubusercontent.com/51674297/154131924-894ace48-02b5-4a74-b3c1-c95628ec4ca4.png)
 
